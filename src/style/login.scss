@@ -1,0 +1,227 @@
+@import "utils/gen";
+$input-width-padding: 16px; 
+$vertical-spacer: 24px; 
+
+// body{
+//     background-color: white;
+// }
+
+.content{
+    // border: 1px solid orange; 
+    width: 100%; 
+    display: flex; 
+    height: 100vh; 
+}
+
+.logo-div{
+    margin-left: 35px; 
+}
+
+.login-mid{
+    // border: 1px solid red; 
+    display: flex; 
+    flex: 1; 
+}
+
+.login-left-mid{
+    // border: 1px solid black; 
+    // position: relative; 
+    // margin-top: 100px; 
+    width: fit-content;
+    margin: 100px auto;
+}
+
+.pablo{
+    width: 600px; 
+    align-self: flex-end;
+    // border: 2px solid lightblue;
+    margin-top: 140px; 
+}
+
+.login-left-div{
+    width: 50%; 
+}
+
+.login-right-div{
+    height: 100%; 
+    width: 50%;
+    box-shadow: 0px 15px 90px rgba(0, 0, 0, 0.03);
+    // background: orange; 
+}
+
+.form-div{
+    flex: 1; 
+    // margin: 240px 0px 0px 0px; 
+    margin-top: 245px;
+    font: $font; 
+    display: flex; 
+    flex-direction: column;
+    // background-color: lightgreen;
+    align-items: flex-start;
+    padding: 0px 0px 0px 100px; 
+    box-sizing: border-box;
+}
+
+.welcome-text{
+    @include format-text(40px, 700, $text-color, -0.04em);
+    margin: 0px 0px 10px 0px; 
+}
+
+.details-text{
+    @include format-text(20px, 400, $secondary-color, 0em);
+    margin: 0px; 
+}
+
+.form-form{
+    margin-top: $mid-spacer; 
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start;
+    width: 447px; 
+    // border: 5px solid red; 
+}
+
+.text-field{
+    margin-bottom: $vertical-spacer;
+}
+
+.input-field{
+    padding: 12px $input-width-padding;
+    font-size: 14px; 
+    border: 2px solid rgba(84, 95, 125, 0.15);
+    width: 100%; 
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.password-div{
+    // border: 1px solid red; 
+    width: 100%;
+    position: relative;
+    display: flex; 
+    align-items: center;
+    margin-bottom: $vertical-spacer;
+}
+
+.text-button{
+    @include format-text(12px, 600, $green-color, 0.1em);
+    border: none; 
+    background-color: white; 
+    cursor: pointer; 
+}
+
+.text-input-button{
+    @extend .text-button; 
+    right: $input-width-padding;
+    position: absolute; 
+}
+
+.login-button{
+    @extend .primary-button; 
+    margin-top: 30px;
+    width: 100%; 
+}
+
+@media only screen and (min-width: 850px) and (max-height: 700px) {
+    .content{
+        height: 700px; 
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    .pablo{
+        width: 500px; 
+        margin-top: 200px; 
+    }
+
+    .form-div{
+        margin-left: 50px;
+        padding-left: 70px;
+    }
+
+    .form-form{
+        width: 380px; 
+    }
+}
+
+
+@media only screen and (max-width: 1050px) {
+    .welcome-text{
+        font-size: 30px; 
+    }
+    
+    .details-text{
+        font-size: 20px; 
+    }
+
+    .pablo{
+        width: 400px; 
+        margin-top: 210px;
+    }
+
+    .form-div{
+        margin-left: 30px;
+        padding-left: 50px;
+    }
+
+    .form-form{
+        margin-top: 40px; 
+        width: 320px; 
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .welcome-text{
+        font-size: 40px;  
+    }
+    
+    .details-text{
+        font-size: 20px; 
+    }
+
+    .content{
+        width: 80%;
+        flex-direction: column;
+        margin: $mid-spacer auto;
+        height: fit-content; 
+        // background: orange; 
+    }
+
+    .login-left-div{
+        margin-bottom: 80px; 
+        height: auto; 
+        width: 100%; 
+    }
+
+    .login-left-mid{
+        margin: 50px 0px 0px 0px;  
+        // background: green; 
+        width: 100%;
+        // display: none; 
+    }
+
+    .login-right-div{
+        // background: red; 
+        width: 100%;
+        // display: none;
+        // height: 20px; 
+    }
+
+    .pablo{
+        width: 100%;
+        margin-top: $mid-spacer;
+    }
+
+    .form-div{
+        margin-left: 0px;
+        margin: 0px;
+        padding-left: 0px;
+        width: 100%;
+        // display: none; 
+    }
+
+    .form-form{
+        margin-top: $mid-spacer;
+        width: 100%; 
+    }
+}

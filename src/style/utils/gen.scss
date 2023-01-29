@@ -1,0 +1,25 @@
+$font: "Avenir Next"; 
+$color: red; 
+$text-color: #213F7D; 
+$secondary-color: #545F7D; 
+$green-color: #39CDCC;
+$mid-spacer: 60px; 
+
+@mixin format-text($size, $weight, $color, $spacing){
+    font: {
+        size: $size; 
+        weight: $weight; 
+    }
+
+    color: $color; 
+    letter-spacing: $spacing;
+}
+
+.primary-button{
+    background-color: #39CDCC;
+    color: white; 
+    padding: 13px; 
+    border-radius: 8px; 
+    border: none; 
+    cursor: pointer; 
+}
