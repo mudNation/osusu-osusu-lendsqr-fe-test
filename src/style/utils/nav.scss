@@ -1,13 +1,212 @@
+@import "gen";
 .nav-body{
     width: 100%; 
     height: 100px; 
-    // box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
     box-shadow: 3px 0px 20px 0px #0000000A;
-
+    box-sizing: border-box;
     padding: 35px 30px;
     background-color: white; 
     display: flex; 
     align-items: center;
 }
 
+.fa-bars{
+    display: none; 
+    color: $text-color;
+}
 
+.search-div{
+    align-self: center;
+    margin-left: 168px; 
+    position: relative;
+
+    .search-input{
+        padding: 12px 20px; 
+        border-radius: 8px; 
+        width: 400px; 
+        height: 40px; 
+        border: 1px solid #213F7D;
+        box-sizing: border-box;
+        background-color: white;
+        opacity: 0.2;
+    }
+    
+    .search-icon-div{
+        background-color: $green-color;
+        height: 40px; 
+        width: 56px;
+        position: absolute; 
+        right: 0px; 
+        top: 0px; 
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+
+
+.nav-right-div{
+    height: 50px; 
+    display: flex; 
+    align-items: center;
+    position: absolute; 
+    right: 60px; 
+
+    .docs-p{
+        @include format-text(16px, 400, $text-color, normal);
+        width: fit-content;
+        text-decoration: underline;
+        font-family: 'Roboto', sans-serif;
+        margin-right: 50px; 
+    }
+    
+    .profile{
+        border-radius: 50%;
+        margin-left: 33.16px; 
+    }
+    
+    .name{
+        @include format-text(16px, 600, $text-color, normal);
+        font-family: "Work Sans";
+        margin-left: 10px; 
+        margin-right: 10px; 
+    }
+
+    .right-dropdown-div{
+        display: none;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 1250px) {
+    .search-div{
+        margin-left: 108px;
+        
+        .search-input{
+            width: 350px; 
+        }    
+    }
+
+    .nav-right-div{
+        .docs-p{
+            margin-right: 35px; 
+        }
+
+        .profile{
+            margin-left: 25.16px; 
+        }
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .search-div{
+        margin-left: 60px;
+        
+        .search-input{
+            width: 220px; 
+        }    
+    }
+
+    .nav-right-div{
+        .docs-p{
+            margin-right: 15px; 
+        }
+        
+        .profile{
+            margin-left: 15.16px; 
+        }
+    }
+}
+
+
+@media only screen and (max-width: 850px) {
+    .nav-body{
+        padding: 35px 5%;
+        .lendsqr{
+            display: none;
+        }
+
+        .fa-bars{
+            display: block; 
+            cursor: pointer;
+        }
+    }
+
+    .search-div{
+        position: absolute;
+        margin: 5px; 
+        left: 50%; 
+        transform: translateX(-50%);  
+        
+        .search-input{
+            width: 200px; 
+            height: 30px;
+        }  
+
+        .search-icon-div{
+            height: 30px; 
+            width: 46px;
+        }
+    }
+
+    .nav-right-div{
+        right: 5%; 
+
+        .docs-p{
+            display: none; 
+        }
+
+        .bell-icon{
+            display: none;
+        }
+        
+        .profile{
+            margin: 0px; 
+            cursor: pointer; 
+        }
+
+        .name{
+            display: none;
+        }
+
+        .nav-right-down-icons{
+            display: none; 
+        }
+
+        .right-dropdown-div{
+            position: absolute;
+            width: 100px;
+            background-color: white;
+            top: 100%; 
+            right: 0%;
+            padding: 0;
+            box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+            display: block;
+            
+
+            li{
+                @include format-text(16px, 400, $text-color, normal);
+                list-style-type: none;
+                padding: 10px; 
+                text-align: center;
+                box-sizing: border-box;
+            }
+        }
+
+        .hidden{
+            display: none; 
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .profile{
+        width: 35px;
+    }
+}

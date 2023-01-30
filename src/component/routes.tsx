@@ -1,7 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'; 
 import Dashboard from '../pages/dashboard';
 import Login from '../pages/login';
-import Users from '../pages/users';
+// import Users from '../pages/userstemp';
  
 const Application = () => {
     return (  
@@ -9,10 +9,10 @@ const Application = () => {
             <Routes>
                 <Route path = "/" element={<Login/>} />
                 <Route path = "/dashboard" element={<Dashboard/>} />
-                <Route path = "/user">
+                {/* <Route path = "/user">
                     <Route index element = {<Users/>}/>
                     <Route path=":id" element = {<Users/>}/>
-                </Route>
+                </Route> */}
             </Routes>
         </BrowserRouter>
     );

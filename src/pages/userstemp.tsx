@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 
-const Users = () => {
+const Userstemp = () => {
     const { id } = useParams(); 
     const [message, setMessage] = useState("")
     useEffect( () => {
@@ -22,4 +22,4 @@ const Users = () => {
 }
 
 
-export default Users; 
+export default Userstemp; 

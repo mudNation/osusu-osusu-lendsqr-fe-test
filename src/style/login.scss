@@ -13,9 +13,9 @@ $vertical-spacer: 24px;
     height: 100vh; 
 }
 
-.logo-div{
-    margin-left: 35px; 
-}
+// .logo-div{
+//     margin-left: 35px; 
+// }
 
 .login-mid{
     // border: 1px solid red; 
@@ -196,15 +196,12 @@ $vertical-spacer: 24px;
     .login-left-mid{
         margin: 50px 0px 0px 0px;  
         // background: green; 
-        width: 100%;
-        // display: none; 
+        width: 100%; 
     }
 
     .login-right-div{
-        // background: red; 
         width: 100%;
-        // display: none;
-        // height: 20px; 
+        box-shadow: none;  
     }
 
     .pablo{

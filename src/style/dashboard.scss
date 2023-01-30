@@ -1,11 +1,18 @@
-// .dashboard-body{
-//     height: 100vh;
-//     background-color: red; 
-//     // background-color: #FBFBFB;
-//     // box-shadow: 3px 0px 20px 0px #0000000A;
-//     // background-color: red; 
-// }
+@import "utils/gen";
+.dashboard-body{
+    height: 100vh;
+    background-color: #FBFBFB;
+    display: flex; 
+    flex-direction: column;
+    position: relative; 
+}
 
-// body{
-//     background-color: red; 
-// }
+
+.dashboard-content{
+    @extend .hide-scroll; 
+    width: 100%; 
+    flex: 1; 
+    display: flex; 
+    overflow-y: scroll;
+    position: relative;
+}
