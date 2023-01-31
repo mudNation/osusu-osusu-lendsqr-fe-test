@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../style/utils/users.scss";
 import group from "../../assets/vectors/Group.png";
 import userIcon from "../../assets/vectors/np_users_1.png";
@@ -8,8 +8,16 @@ import tableMenu from "../../assets/vectors/table-menu.png";
 import dot from "../../assets/vectors/dot.png";
 import chevLeft from "../../assets/vectors/chev-left.png";
 import chevRight from "../../assets/vectors/chev-right.png";
+import chevDown from "../../assets/vectors/chevdown.png";
+import view from "../../assets/vectors/np_view.png";
+import dotUser from "../../assets/vectors/np_user.png";
+import deleteFriend from "../../assets/vectors/np_delete-friend.png";
 
 const Users = () => {
+    const [showFilter, setShowFilter] = useState(false); 
+    const [dotClass, setDotclass] = useState(Array(10).fill("dot-div-hidden")); 
+    const [dotIndex, setDotIndex] = useState(-1); 
+
     const cards = [
         {
             icon: group,
@@ -120,6 +128,18 @@ const Users = () => {
         </div>
     ))
 
+    const dotClick = (index: number) => {
+        const temp = [...dotClass]; 
+
+        if(dotIndex !== -1 && index !== dotIndex){
+            temp[dotIndex] = "dot-div-hidden";
+        }
+
+        temp[index] = temp[index] === "dot-div-shown" ? "dot-div-hidden" : "dot-div-shown"; 
+        setDotclass(temp);
+        setDotIndex(index);
+    }
+
     const userList = userInfo.map((user, index) => (
         <div className='user-row-div' key={index}>
             <p className="org">{user.organization}</p>
@@ -135,9 +155,23 @@ const Users = () => {
                 {/* <img src={dot} alt="three dot"/> */}
             </div>
 
-            <img className="dot-icon" src={dot} alt="three dot"/>
+            <img className="dot-icon" src={dot} alt="three dot" onClick={() => {dotClick(index)} } />
+
+            <div className={dotClass[index]}>
+                <p><img src={view} alt="view user icon"/> View Details </p>
+                <p><img src={deleteFriend} alt="view user icon"/> Blacklist User </p>
+                <p><img src={dotUser} alt="view user icon"/> Activate User </p>
+            </div>
         </div>
     ))
+
+    const filterClick = () => {
+        if(showFilter){
+            setShowFilter(false)
+        }else{
+            setShowFilter(true)
+        }
+    }
 
     return (
         <div className="user-content">
@@ -149,17 +183,73 @@ const Users = () => {
 
             <div className="user-table">
                 <div className="user-row-div">
-                    <h3 className="org">ORGANIZATION <img src={tableMenu} alt="table menu icon" /></h3>
-                    <h3 className="username">USERNAME <img src={tableMenu} alt="table menu icon" /></h3>
-                    <h3 className="email">EMAIL <img src={tableMenu} alt="table menu icon" /></h3>
-                    <h3 className="phone">PHONE NUMBER <img src={tableMenu} alt="table menu icon" /></h3>
-                    <h3 className="date">DATE JOINED <img src={tableMenu} alt="table menu icon" /></h3>
-                    <h3 className="status">STATUS <img src={tableMenu} alt="table menu icon" /></h3>
+                    <h3 className="org">ORGANIZATION <img src={tableMenu} alt="table menu icon" onClick={filterClick} /></h3>
+                    <h3 className="username">USERNAME <img src={tableMenu} alt="table menu icon" onClick={filterClick} /></h3>
+                    <h3 className="email">EMAIL <img src={tableMenu} alt="table menu icon" onClick={filterClick} /></h3>
+                    <h3 className="phone">PHONE NUMBER <img src={tableMenu} alt="table menu icon" onClick={filterClick} /></h3>
+                    <h3 className="date">DATE JOINED <img src={tableMenu} alt="table menu icon" onClick={filterClick} /></h3>
+                    <h3 className="status">STATUS <img src={tableMenu} alt="table menu icon" onClick={filterClick} /></h3>
                 </div>
 
-                <h3>Filter <img src={tableMenu} alt="table menu icon" /></h3>
+                <h3 className="filter-p">Filter <img src={tableMenu} alt="table menu icon" onClick={filterClick}/></h3>
 
                 {userList}
+
+                <div className={showFilter ? "filter-div" : "filter-div-hidden"}>
+                    <label>Organization</label>
+                    <div className="select-div">
+                        <select className="selectSet" placeholder="Select">
+                            <option value="Lendsqr" selected>Select</option>
+                            <option value="Lendsqr">Lendsqr</option>
+                            <option value="Lendsqr">Lendsqr</option>
+                            <option value="Lendsqr">Lendsqr</option>
+                        </select>
+                        <div className="input-border"></div>
+                        <img className="chev-down-icon" src={chevDown} alt="select down icon"/>
+                    </div>
+                    
+                    <label>Username</label>
+                    <div className="select-div">
+                        <input type="text" placeholder="User"></input>
+                        <div className="input-border"></div>
+                    </div>
+
+                    <label>Email</label>
+                    <div className="select-div">
+                        <input type="text" placeholder="Email"></input>
+                        <div className="input-border"></div>
+                    </div>
+
+                    <label>Date</label>
+                    <div className="select-div">
+                        <input type="date" placeholder="Date"></input>
+                        <div className="input-border"></div>
+                    </div>
+
+                    <label>Phone Number</label>
+                    <div className="select-div">
+                        <input type="text" placeholder="Phone Number"></input>
+                        <div className="input-border"></div>
+                    </div>
+
+                    <label>Status</label>
+                    <div className="select-div">
+                        <select className="selectSet" placeholder="Select">
+                            <option value="Lendsqr" selected>Select</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Blacklisted">Blacklisted</option>
+                        </select>
+                        <img className="chev-down-icon" src={chevDown} alt="select down icon"/>
+                        <div className="input-border"></div>
+                    </div>
+
+                    <div className="filter-button-div">
+                        <button>Reset</button>
+                        <button>Filter</button>
+                    </div>
+                </div>
             </div>
 
             <div className="pagination-div">
