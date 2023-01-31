@@ -20,7 +20,7 @@ import scroll from "../../assets/vectors/scroll.png";
 import chartBar from "../../assets/vectors/chart-bar.png";
 import badgePercent from "../../assets/vectors/badge-percent.png";
 import clipBoardList from "../../assets/vectors/clipboard-list.png";
-
+import signout from "../../assets/vectors/sign-out.png";
 
 interface Props{
     sideClass: string,
@@ -70,7 +70,7 @@ const SideNav = ({sideClass}:Props) => {
         <div className="menu-div" key={index}>
             <h3>{item.title}</h3>
             {item.list.map((list, i) => (
-                <div className={list.text === 'Users' ? "active-side-nav" : ""}>
+                <div key={i} className={list.text === 'Users' ? "active-side-nav" : ""}>
                     <img src={list.icon} alt= {`${list.text} icon`}/>
                     <p>{list.text}</p>
                     <div className="side-hover"></div>
@@ -92,8 +92,16 @@ const SideNav = ({sideClass}:Props) => {
                 <p>Dashboard</p>
             </div>
 
+            <div className="menu-div-holder">
+                {menuList}
+            </div>
             
-            {menuList}
+            <p className="sign-out-p">
+                <img src={signout} alt='logout icon'/>
+                Logout
+            </p>
+
+            <p className="version-p">v1.2.0</p>
         </div>
     )
 }

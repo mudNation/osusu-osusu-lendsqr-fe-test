@@ -1,0 +1,351 @@
+@import "utils/gen";
+
+.user-content{
+    @extend .hide-scroll; 
+    flex: 1; 
+    height: 100%; 
+    overflow-y: scroll;
+    padding: 60px 60px 200px 60px;
+    font-family: $work;
+    box-sizing: border-box;
+    position: relative;
+    font: $work;
+
+    p{
+        margin: 0px;
+    }
+
+    .back-p{
+        @include format-text(16px, 400, $secondary-color, normal);
+        margin: 0px; 
+        cursor: pointer; 
+        img{
+            margin-right: 14px;
+        }
+    }
+
+    .user-details-div{
+        @include format-text(24px, 500, $text-color, normal);
+        width: 100%; 
+        margin-top: 32px; 
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        
+        .user-button-div{
+            display: flex; 
+
+            button:first-child{
+                @include button(2px solid #E4033B, transparent, #E4033B, 170px, 0.1em); 
+                margin-right: 14px; 
+            }
+
+            button:nth-child(2){
+                @include button(2px solid #39CDCC, transparent, #39CDCC, 170px, 0.1em); 
+                margin-right: 14px; 
+            }
+        }
+    }
+
+    .user-logo-div{
+        width: 100%; 
+        box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+        margin-top: 40px; 
+        padding: 30px 30px 0px 30px;
+        box-sizing: border-box;
+        position: relative;
+        position: flex;
+
+        .user-logo-first{
+            display: flex; 
+            margin-bottom: 51px;
+            .name-logo{
+                display: flex; 
+                align-items: center;
+                position: relative;
+                width: 300px;
+                padding-right: 30px;
+                margin-right: 30px; 
+                box-sizing: border-box;
+                // background: pink;
+                img{
+                    width: 100px;
+                    margin-right: 20px; 
+                }
+
+                .lsq-div{
+                    @include format-text(14px, 400, $secondary-color, normal);
+                }
+
+                .bank-p{
+                    @include format-text(12px, 400, $secondary-color, normal);
+                }
+
+                h2{
+                    @include format-text(22px, 600, $secondary-color, normal);
+                    margin:0px 0px 8px 0px; 
+                    // background: blue; 
+                }
+
+                .star-div{
+                    margin-top: 11.29px;
+                    display: flex; 
+                    justify-content: flex-start;
+                    img{
+                        width: 14px;
+                        margin-right: 5.6px; 
+                    }
+                }
+            }
+
+            .name-logo:not(:last-child)::after{
+                content: "";
+                border: 1px solid $secondary-color;
+                opacity: 0.2;
+                height: 80px;
+                position: absolute; 
+                right: 0px;  
+            }
+
+            .name-logo:not(:last-child){
+                margin-right: 30px; 
+            }
+
+            .name-logo:nth-child(2){
+                width: 112px; 
+            }
+        }
+
+        .user-logo-second{
+            width: 100%; 
+            // height: 20px; 
+            display: flex; 
+            justify-content: space-between;
+
+            p{
+                @include format-text(16px, 400, rgba(0, 0, 0, 0.8), normal);
+                padding-bottom: 10px;
+                box-sizing: border-box;
+                // background: blue;
+            }
+
+            p:first-child{
+                padding: 0px 25px 10px 25px;
+                color: $green-color; 
+                border-bottom: 2px solid $green-color
+            }
+        }
+
+        .select-div{
+            margin-bottom: 24px;
+            display: none; 
+        }
+    }
+
+
+    .user-information-div{
+        width: 100%; 
+        // height: 500px; 
+        background-color: white; 
+        box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+        margin-top: 30px;
+        padding: 0px 30px; 
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        h3{
+            @include format-text(16px, 600, $text-color, normal);
+            margin: 30px 0px;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .user-content{
+        // background-color: green; 
+        .user-logo-div{
+            .user-logo-first{
+                .name-logo{
+                    padding-right: 20px;
+                    margin-right: 20px; 
+
+                    img{
+                        width: 80px;
+                        margin-right: 20px; 
+                    }
+    
+                    .lsq-div{
+                        @include format-text(12px, 400, $secondary-color, normal);
+                    }
+    
+                    .bank-p{
+                        @include format-text(10px, 400, $secondary-color, normal);
+                    }
+    
+                    h2{
+                        @include format-text(18px, 600, $secondary-color, normal);
+                    }
+    
+                    .star-div{
+                        img{
+                            width: 12px;
+                        }
+                    }
+                }
+    
+                .name-logo:not(:last-child){
+                    margin-right: 20px; 
+                }
+    
+                .name-logo:nth-child(2){
+                    width: 152px; 
+                }
+    
+            }
+
+            .user-logo-second{
+                width: 100%; 
+                display: flex; 
+                justify-content: space-between;
+    
+                p{
+                    font-size: 14px; 
+                }
+    
+                p:first-child{
+                    padding: 0px 20px 10px 20px;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1050px){
+    .user-content{
+        .user-information-div{ 
+            h3{
+                font-size: 20px; 
+            }
+        }
+
+        .user-logo-div{
+            height: fit-content; 
+            display: flex; 
+            flex-direction: column;
+
+            .user-logo-first{
+                flex-direction: column;
+
+                .name-logo{
+                    img{
+                        width: 100px;
+                        margin-right: 20px; 
+                    }
+    
+                    .lsq-div{
+                        font-size: 14px; 
+                    }
+    
+                    .bank-p{
+                        font-size: 12px; 
+                    }
+    
+                    h2{
+                        font-size: 22px; 
+                    }
+                }
+
+                .name-logo:not(:last-child){
+                    margin-bottom: 24px;
+                }
+
+                .name-logo:not(:last-child)::after{
+                    display: none;
+                }
+            }
+
+            .user-logo-second{
+                display: none;
+            }
+
+            .select-div{
+                margin-bottom: 24px;
+                display: flex; 
+            }
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: 850px){
+    .user-content{
+        .user-details-div{
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            p{
+                margin-bottom: 24px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .user-content{
+        .user-details-div{
+            font-size: 20px; 
+
+            .user-button-div{
+                display: flex; 
+                flex-direction: column;
+    
+                button:first-child{
+                    margin-bottom: 10px;
+                }
+    
+                button:nth-child(2){
+                    @include button(2px solid #39CDCC, transparent, #39CDCC, 170px, 0.1em); 
+                    margin-right: 14px; 
+                }
+            }
+        }
+
+        .user-logo-div{
+            width: 100%; 
+            box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+            margin-top: 40px; 
+            padding: 30px 30px 0px 30px;
+            box-sizing: border-box;
+            position: relative;
+            position: flex;
+    
+            .user-logo-first{
+                display: flex; 
+                margin-bottom: 51px;
+                .name-logo:first-child{
+                    flex-direction: column;
+                    padding: 0px;
+                    align-items: flex-start;
+                    width: fit-content;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 450px){
+    .user-content{
+        .user-information-div{ 
+            h3{
+                font-size: 16px; 
+            }
+        }
+    }
+}
+
+

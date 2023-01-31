@@ -12,11 +12,26 @@ import chevDown from "../../assets/vectors/chevdown.png";
 import view from "../../assets/vectors/np_view.png";
 import dotUser from "../../assets/vectors/np_user.png";
 import deleteFriend from "../../assets/vectors/np_delete-friend.png";
+import { useNavigate } from "react-router-dom";
+import Select from 'react-select'
 
 const Users = () => {
     const [showFilter, setShowFilter] = useState(false); 
     const [dotClass, setDotclass] = useState(Array(10).fill("dot-div-hidden")); 
     const [dotIndex, setDotIndex] = useState(-1); 
+    const navigate = useNavigate(); 
+
+    const orgOptions = [
+        { value: 'lendsqr', label: 'Lendsqr' },
+        { value: 'irorun', label: 'Irorun' },
+    ]
+
+    const statusOptions = [
+        { value: 'active', label: 'Active' },
+        { value: 'inactive', label: 'Inactive' },
+        { value: 'pending', label: 'Pending' },
+        { value: 'blacklisted', label: 'Blacklisted' },
+    ]
 
     const cards = [
         {
@@ -140,6 +155,10 @@ const Users = () => {
         setDotIndex(index);
     }
 
+    const detailsClick = () => {
+        navigate("/userdetails");
+    }
+
     const userList = userInfo.map((user, index) => (
         <div className='user-row-div' key={index}>
             <p className="org">{user.organization}</p>
@@ -151,14 +170,12 @@ const Users = () => {
                 <div className="oval-div">
                     <p className={`${user.status.toLowerCase()}-p`}>{user.status}</p> <div className={`oval-div-hover ${user.status.toLowerCase()}` }></div>
                 </div>
-
-                {/* <img src={dot} alt="three dot"/> */}
             </div>
 
             <img className="dot-icon" src={dot} alt="three dot" onClick={() => {dotClick(index)} } />
 
             <div className={dotClass[index]}>
-                <p><img src={view} alt="view user icon"/> View Details </p>
+                <p onClick={detailsClick}><img src={view} alt="view user icon"/> View Details </p>
                 <p><img src={deleteFriend} alt="view user icon"/> Blacklist User </p>
                 <p><img src={dotUser} alt="view user icon"/> Activate User </p>
             </div>
@@ -198,14 +215,7 @@ const Users = () => {
                 <div className={showFilter ? "filter-div" : "filter-div-hidden"}>
                     <label>Organization</label>
                     <div className="select-div">
-                        <select className="selectSet" placeholder="Select">
-                            <option value="Lendsqr" selected>Select</option>
-                            <option value="Lendsqr">Lendsqr</option>
-                            <option value="Lendsqr">Lendsqr</option>
-                            <option value="Lendsqr">Lendsqr</option>
-                        </select>
-                        <div className="input-border"></div>
-                        <img className="chev-down-icon" src={chevDown} alt="select down icon"/>
+                        <Select options={orgOptions} />
                     </div>
                     
                     <label>Username</label>
@@ -234,15 +244,7 @@ const Users = () => {
 
                     <label>Status</label>
                     <div className="select-div">
-                        <select className="selectSet" placeholder="Select">
-                            <option value="Lendsqr" selected>Select</option>
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Blacklisted">Blacklisted</option>
-                        </select>
-                        <img className="chev-down-icon" src={chevDown} alt="select down icon"/>
-                        <div className="input-border"></div>
+                        <Select options={statusOptions} />
                     </div>
 
                     <div className="filter-button-div">
@@ -261,7 +263,6 @@ const Users = () => {
                         <option value="25">25</option>
                         <option value="10">10</option>
                     </select>
-
                     <p>Out of 100</p>
                 </div>
 

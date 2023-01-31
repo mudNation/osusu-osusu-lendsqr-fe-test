@@ -1,5 +1,11 @@
 @import "gen";
 $left: 30px; 
+
+.mob-side-nav{
+    // @extend .side-nav;
+    // display: none;
+}
+
 .side-nav{
     @extend .hide-scroll; 
     width: 283px;  
@@ -9,13 +15,12 @@ $left: 30px;
     box-sizing: border-box;
     overflow-y: scroll;
     position: relative;  
-    background-color: white; 
+    background-color: white;
+    z-index: 5;
+    // border: 5px solid black; 
 }
 
-.mob-side-nav{
-    @extend .side-nav;
-    // display: block;
-}
+
 
 .hidden{
     display: none; 
@@ -40,6 +45,14 @@ $left: 30px;
     opacity: 0.6; 
 }
 
+.menu-div-holder{
+    display: flex; 
+    flex-direction: column;
+    border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+    padding-bottom: 50px;
+    
+}
+
 .menu-div{
     // border: 1px solid black;
     margin-top: 41px; 
@@ -47,6 +60,7 @@ $left: 30px;
     display: flex; 
     flex-direction: column;
     position: relative;
+    
     // background: yellow;
 
     h3{
@@ -95,6 +109,25 @@ $left: 30px;
     }
 }
 
+.sign-out-p{
+    @include format-text(16px, 400, $text-color, normal);
+    display: flex; 
+    align-items: center;
+    // height: 40px;
+    margin: 20px 0px 42px $left; 
+    cursor: pointer;
+    width: fit-content;
+    // background-color: blue;
+    img{
+        margin-right: 10px;
+    }
+}
+
+.version-p{
+    @include format-text(12px, 400, $text-color, normal);
+    margin-left: $left;
+    margin-bottom: 0px; 
+}
 
 @media only screen and (max-width: 1250px) {
     $left: 20px; 
@@ -130,7 +163,21 @@ $left: 30px;
                 }
             }
         }
-        
+
+        .sign-out-p{
+            font-size: 13px; 
+            margin: 20px 0px 42px $left; 
+            // background-color: blue
+            display: flex; 
+            align-items: center;
+            img{
+                width: 13px; 
+            }
+        }
+
+        .version-p{
+            margin-left: $left;
+        }
     }
 }
 
@@ -139,10 +186,10 @@ $left: 30px;
     .side-nav{
         position: absolute; 
         top: 0px; 
-        z-index: 10;
+        display: none; 
     }
 
     .mob-side-nav{
-        display: none; 
+        display: block; 
     }
 }
