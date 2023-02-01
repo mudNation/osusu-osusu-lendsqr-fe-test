@@ -79,7 +79,6 @@ const Users = () => {
 
     const storeDetails = async () => {
         userInfo.forEach((value) => {
-            // alert(`user-${value.id}`)
             localStorage.setItem(`user-${value.id}`, JSON.stringify(value)); 
         })
     }
@@ -108,11 +107,11 @@ const Users = () => {
         setDotIndex(index);
     }
 
-    const detailsClick = () => {
-        // navigate("/userdetails");
+    const detailsClick = (id: string) => {
+        navigate(`/userdetails/${id}`);
         // const user = localStorage.getItem("user-1"); 
-        const user = JSON.parse(localStorage.getItem("user-1") || '{}'); 
-        alert(JSON.stringify(user))
+        // const user = JSON.parse(localStorage.getItem(`user-${id}`) || '{}'); 
+        // alert(JSON.stringify(user))
     }
 
     const userList = userInfo.map((user: UserObject, index: number) => (
@@ -131,7 +130,7 @@ const Users = () => {
             <img className="dot-icon" src={dot} alt="three dot" onClick={() => {dotClick(index)} } />
 
             <div className={dotClass[index]}>
-                <p onClick={detailsClick}><img src={view} alt="view user icon"/> View Details </p>
+                <p onClick={() => {detailsClick(user.id)}}><img src={view} alt="view user icon"/> View Details </p>
                 <p><img src={deleteFriend} alt="view user icon"/> Blacklist User </p>
                 <p><img src={dotUser} alt="view user icon"/> Activate User </p>
             </div>

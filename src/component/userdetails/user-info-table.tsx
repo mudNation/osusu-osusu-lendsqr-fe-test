@@ -1,7 +1,12 @@
 import React from "react";
 import "../../style/utils/user-info-table.scss";
+import { UserObject } from "../utils/models";
 
-const UserInfoTable = () => {
+interface Props{
+    info?: UserObject,
+}
+
+const UserInfoTable = ({info}:Props) => {
     return (
         <div className="table-content">
             <h3>Personal Information</h3>
@@ -10,27 +15,27 @@ const UserInfoTable = () => {
                     <tr>
                         <td>
                             <p>Full name</p>
-                            <p>Grace Effiom</p>
+                            <p>{`${info?.profile.firstName} ${info?.profile.lastName}`}</p>
                         </td>
 
                         <td>
                             <p>Phone Number</p>
-                            <p>07060780922</p>
+                            <p>{info?.profile.phoneNumber}</p>
                         </td>
 
                         <td>
                             <p>Email Address</p>
-                            <p>grace@gmail.com</p>
+                            <p>{info?.email}</p>
                         </td>
 
                         <td>
                             <p>BVN</p>
-                            <p>07060780922</p>
+                            <p>{info?.profile.bvn}</p>
                         </td>
 
                         <td>
                             <p>Gender</p>
-                            <p>Female</p>
+                            <p>{info?.profile.gender}</p>
                         </td>
                     </tr>
 
@@ -46,8 +51,8 @@ const UserInfoTable = () => {
                         </td>
 
                         <td>
-                            <p>Email Address</p>
-                            <p>grace@gmail.com</p>
+                            <p>Type of residence</p>
+                            <p>{info?.profile.address}</p>
                         </td>
                     </tr>
                 </tbody>
@@ -61,34 +66,34 @@ const UserInfoTable = () => {
                 <tr>
                     <td>
                         <p>level of education</p>
-                        <p>B.Scs</p>
+                        <p>{info?.education.level}</p>
                     </td>
 
                     <td>
                         <p>employment status</p>
-                        <p>Employed</p>
+                        <p>{info?.education.employmentStatus}</p>
                     </td>
 
                     <td>
                         <p>sector of employment</p>
-                        <p>FinTech</p>
+                        <p>{info?.education.sector}</p>
                     </td>
 
                     <td>
                         <p>Duration of employment</p>
-                        <p>2 years</p>
+                        <p>{info?.education.duration}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td>
                         <p>Office Email</p>
-                        <p>grace@lendsqr.com</p>
+                        <p>{info?.education.officeEmail}</p>
                     </td>
 
                     <td>
                         <p>Monthly Income</p>
-                        <p>₦200,000.00- ₦400,000.00</p>
+                        <p>{`₦${info?.education.monthlyIncome[0]} - ₦${info?.education.monthlyIncome[1]}`}</p>
                     </td>
 
                     <td>
@@ -106,17 +111,17 @@ const UserInfoTable = () => {
                 <tr>
                     <td>
                         <p>Twitter</p>
-                        <p>@grace_effiom</p>
+                        <p>{info?.socials.twitter}</p>
                     </td>
 
                     <td>
                         <p>FaceBook</p>
-                        <p>Grace Effiom</p>
+                        <p>{info?.socials.facebook}</p>
                     </td>
 
                     <td>
                         <p>Instagram</p>
-                        <p>@grace_effiom</p>
+                        <p>{info?.socials.instagram}</p>
                     </td>
 
                     <td className="empty"></td>
@@ -131,17 +136,17 @@ const UserInfoTable = () => {
                 <tr>
                     <td>
                         <p>Full Name</p>
-                        <p>Debby Ogana</p>
+                        <p>{`${info?.guarantor.firstName} ${info?.guarantor.lastName}`}</p>
                     </td>
 
                     <td>
                         <p>Phone Number</p>
-                        <p>07060780922</p>
+                        <p>{info?.guarantor.phoneNumber}</p>
                     </td>
 
                     <td>
-                        <p>Email Address</p>
-                        <p>debby@gmail.com</p>
+                        <p>Address</p>
+                        <p>{info?.guarantor.address}</p>
                     </td>
 
                     <td>

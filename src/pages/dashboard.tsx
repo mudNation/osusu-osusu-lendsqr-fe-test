@@ -24,19 +24,10 @@ const Dashboard = () => {
                 setSideClass(sideClass.replace(" mob-side-nav", "")); 
             }
         }
-        
-        getDetails(); 
+    
         window.addEventListener('resize', handleResize)
     }, [])
 
-    const getDetails = async () => {
-        try{
-            const response = await axios.get('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
-            alert(JSON.stringify(response.data));
-        }catch(err){
-            alert(err); 
-        }
-    }
 
     return(
         <div className='dashboard-body'>

@@ -6,16 +6,22 @@ import "../style/userdetails.scss";
 import back from "../assets/vectors/back-icon.png";
 import avatar from "../assets/avatar.png";
 import fullStar from "../assets/vectors/np_star_full.png";
-import emptyStar from "../assets/vectors/star_empty.png";
+import emptyStar from "../assets/vectors/np_star_empty.png";
 import chevDown from "../assets/vectors/chevdown.png";
 import UserInfoTable from "../component/userdetails/user-info-table";
 import Select from 'react-select'
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import { UserObject } from "../component/utils/models";
+import { useNavigate } from "react-router-dom";
 
 const UserDetails = () => {
     const [sideClass, setSideClass] = useState("side-nav")
+    const { id } = useParams(); 
+    const [info, setInfo] = useState<UserObject>(); 
+    const navigate = useNavigate(); 
+    // const [info, setInfo] = 
     const barsClick = () => {
-
         if(sideClass.includes("mob-side-nav")){
             setSideClass(sideClass.replace(" mob-side-nav", "")); 
         }else{
@@ -24,6 +30,8 @@ const UserDetails = () => {
     }
 
     useEffect(() => {
+        getLocal(); 
+
         function handleResize() {
             if(window.innerWidth >= 850){
                 setSideClass(sideClass.replace(" mob-side-nav", "")); 
@@ -34,6 +42,11 @@ const UserDetails = () => {
         window.addEventListener('resize', handleResize)
     }, [])
 
+    const getLocal = () => {
+        const user = JSON.parse(localStorage.getItem(`user-${id}`) || '{}'); 
+        setInfo(user)
+    }
+
     const options = [
         { value: 'general details', label: 'Genearl Details' },
         { value: 'documents', label: 'Documents' },
@@ -43,13 +56,17 @@ const UserDetails = () => {
         { value: 'app and systems', label: 'App and Systems' },
     ]
 
+    const backClick = () => {
+        navigate(`/dashboard`);
+    }
+
     return (
         <div className='dashboard-body'>
             <Nav barsClick={barsClick} />
             <div className='dashboard-content'>
                 <SideNav sideClass = {sideClass} />
                 <div className="user-content">
-                    <p className="back-p"><img src={back} alt="back icon"/> Back to Users</p>
+                    <p className="back-p" onClick={backClick}><img src={back} alt="back icon"/> Back to Users</p>
 
                     <div className="user-details-div">
                         <p>User Details</p>
@@ -63,10 +80,10 @@ const UserDetails = () => {
                     <div className="user-logo-div">
                         <div className="user-logo-first">
                             <div className="name-logo">
-                                <img src={avatar} alt="user avatar"/>
+                                <img src={info?.profile.avatar} alt="user avatar"/>
                                 <div className="name-inner-div">
-                                    <h2>Grace Effiom</h2>
-                                    <p className="lsq-div">LSQFf587g90</p>
+                                    <h2>{`${info?.profile.firstName} ${info?.profile.lastName}` || ""}</h2>
+                                    <p className="lsq-div">{info?.accountNumber}</p>
                                 </div>
                             </div>
 
@@ -76,14 +93,14 @@ const UserDetails = () => {
                                     <p className="star-div">
                                         <img src={fullStar} alt = "full start"/> 
                                         <img src={fullStar} alt = "full start"/>
-                                        <img src={fullStar} alt = "full start"/>
+                                        <img src={emptyStar} alt = "full start"/>
                                     </p>
                                 </div>
                             </div>
 
                             <div className="name-logo">
                                 <div className="name-inner-div">
-                                    <h2>₦200,000.00</h2>
+                                    <h2>{`₦${info?.accountBalance}`}</h2>
                                     <p className="bank-p">9912345678/Providus Bank</p>
                                 </div>
                             </div>
@@ -94,7 +111,7 @@ const UserDetails = () => {
                             <p>Documents</p>
                             <p>Bank Details</p>
                             <p>Loans</p>
-                            <p>Savigns</p>
+                            <p>Savings</p>
                             <p>App and System</p>
                         </div>
 
@@ -109,7 +126,7 @@ const UserDetails = () => {
                     </div>
 
                     <div className="user-information-div">
-                        <UserInfoTable />
+                        <UserInfoTable info={info }/>
                     </div>
                 </div>
             </div>

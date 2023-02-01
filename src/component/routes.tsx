@@ -10,11 +10,11 @@ const Application = () => {
             <Routes>
                 <Route path = "/" element={<Login/>} />
                 <Route path = "/dashboard" element={<Dashboard/>} />
-                <Route path = "/userdetails" element={<UserDetails/>} />
-                {/* <Route path = "/user">
-                    <Route index element = {<Users/>}/>
-                    <Route path=":id" element = {<Users/>}/>
-                </Route> */}
+                {/* <Route path = "/userdetails" element={<UserDetails/>} /> */}
+                <Route path = "/userdetails">
+                    <Route index element = {<UserDetails/>}/>
+                    <Route path=":id" element = {<UserDetails/>}/>
+                </Route>
             </Routes>
         </BrowserRouter>
     );
