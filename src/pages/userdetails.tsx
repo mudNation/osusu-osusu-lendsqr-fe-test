@@ -10,6 +10,7 @@ import emptyStar from "../assets/vectors/star_empty.png";
 import chevDown from "../assets/vectors/chevdown.png";
 import UserInfoTable from "../component/userdetails/user-info-table";
 import Select from 'react-select'
+import axios from "axios";
 
 const UserDetails = () => {
     const [sideClass, setSideClass] = useState("side-nav")
@@ -28,7 +29,8 @@ const UserDetails = () => {
                 setSideClass(sideClass.replace(" mob-side-nav", "")); 
             }
         }
-    
+
+        
         window.addEventListener('resize', handleResize)
     }, [])
 

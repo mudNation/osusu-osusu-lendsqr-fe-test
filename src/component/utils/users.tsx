@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../style/utils/users.scss";
 import group from "../../assets/vectors/Group.png";
 import userIcon from "../../assets/vectors/np_users_1.png";
@@ -14,12 +14,17 @@ import dotUser from "../../assets/vectors/np_user.png";
 import deleteFriend from "../../assets/vectors/np_delete-friend.png";
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select'
+import axios from "axios";
+import { UserObject } from "./models";
 
 const Users = () => {
     const [showFilter, setShowFilter] = useState(false); 
-    const [dotClass, setDotclass] = useState(Array(10).fill("dot-div-hidden")); 
+     
     const [dotIndex, setDotIndex] = useState(-1); 
+    const [userInfo, setUserInfo] = useState<UserObject[]>([]); 
     const navigate = useNavigate(); 
+    const [dotClass, setDotclass] = useState<string[]>([]);
+    // const [dotClass, setDotclass] = useState(Array(userInfo.length).fill("dot-div-hidden"));
 
     const orgOptions = [
         { value: 'lendsqr', label: 'Lendsqr' },
@@ -56,80 +61,28 @@ const Users = () => {
         },
     ]
 
-    const userInfo = [
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Inactive",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Pending",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Blacklisted",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Active",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Pending",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Pending",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Inactive",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Blacklisted",
-        },
-        {
-            organization: "Lendsqr",
-            username: "Adedeji",
-            email: "adedeji@lendsqr.com",
-            phone: "08078903721",
-            date: "May 15, 2020 10:00 AM",
-            status: "Active",
-        },
-    ]
+    useEffect(() => {
+        getDetails(); 
+    }, [])
+
+    const getDetails = async () => {
+        try{
+            const response = await axios.get('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
+            setUserInfo(response.data); 
+            setDotclass(Array(response.data.length).fill("dot-div-hidden"))
+            // localStorage.setItem("data", response.data); 
+            storeDetails();
+        }catch(err){
+            alert(err); 
+        }
+    }
+
+    const storeDetails = async () => {
+        userInfo.forEach((value) => {
+            // alert(`user-${value.id}`)
+            localStorage.setItem(`user-${value.id}`, JSON.stringify(value)); 
+        })
+    }
 
     const cardList = cards.map((card, index) => (
         <div className='card-div' key={index}>
@@ -156,19 +109,22 @@ const Users = () => {
     }
 
     const detailsClick = () => {
-        navigate("/userdetails");
+        // navigate("/userdetails");
+        // const user = localStorage.getItem("user-1"); 
+        const user = JSON.parse(localStorage.getItem("user-1") || '{}'); 
+        alert(JSON.stringify(user))
     }
 
-    const userList = userInfo.map((user, index) => (
+    const userList = userInfo.map((user: UserObject, index: number) => (
         <div className='user-row-div' key={index}>
-            <p className="org">{user.organization}</p>
-            <p className="username">{user.username}</p>
+            <p className="org">{user.orgName}</p>
+            <p className="username">{user.userName}</p>
             <p className="email">{user.email}</p>
-            <p className="phone">{user.phone}</p>
-            <p className="date">{user.date}</p>
+            <p className="phone">{user.phoneNumber}</p>
+            <p className="date">{user.createdAt.toString().split('T')[0]}</p>
             <div className="status">
                 <div className="oval-div">
-                    <p className={`${user.status.toLowerCase()}-p`}>{user.status}</p> <div className={`oval-div-hover ${user.status.toLowerCase()}` }></div>
+                    <p className='active-p'>{"active"}</p> <div className={`oval-div-hover active` }></div>
                 </div>
             </div>
 

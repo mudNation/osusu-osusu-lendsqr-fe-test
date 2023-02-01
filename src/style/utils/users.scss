@@ -230,6 +230,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         p{
             @include format-text(14px, 400, $secondary-color, normal);
             margin: 0px 35px 0px 0px;
+            overflow-wrap: break-word;;
         }
 
         p:last-child{
