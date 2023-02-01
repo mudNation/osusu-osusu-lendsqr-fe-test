@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../style/utils/users.scss";
+import "../../style/utils/pagination.scss";
 import group from "../../assets/vectors/Group.png";
 import userIcon from "../../assets/vectors/np_users_1.png";
 import loan from "../../assets/vectors/np_loan_1.png";
@@ -8,7 +9,6 @@ import tableMenu from "../../assets/vectors/table-menu.png";
 import dot from "../../assets/vectors/dot.png";
 import chevLeft from "../../assets/vectors/chev-left.png";
 import chevRight from "../../assets/vectors/chev-right.png";
-import chevDown from "../../assets/vectors/chevdown.png";
 import view from "../../assets/vectors/np_view.png";
 import dotUser from "../../assets/vectors/np_user.png";
 import deleteFriend from "../../assets/vectors/np_delete-friend.png";
@@ -16,14 +16,18 @@ import { useNavigate } from "react-router-dom";
 import Select from 'react-select'
 import axios from "axios";
 import { UserObject } from "./models";
+import ReactPaginate from "react-paginate";
 
 const Users = () => {
     const [showFilter, setShowFilter] = useState(false); 
-     
     const [dotIndex, setDotIndex] = useState(-1); 
     const [userInfo, setUserInfo] = useState<UserObject[]>([]); 
+    const [currentInfos, setCurrentInfos] = useState<UserObject[]>([]); 
     const navigate = useNavigate(); 
     const [dotClass, setDotclass] = useState<string[]>([]);
+    const [showingCount, setShowingCount] = useState(10); 
+    const [activePage, setActivePage] = useState(0); 
+    const [pagesCount, setPagesCount] = useState(0)
     // const [dotClass, setDotclass] = useState(Array(userInfo.length).fill("dot-div-hidden"));
 
     const orgOptions = [
@@ -65,13 +69,26 @@ const Users = () => {
         getDetails(); 
     }, [])
 
+    useEffect(() => {
+        storeDetails();
+        setPagination(); 
+        setDotclass(Array(showingCount).fill("dot-div-hidden"))
+    }, [userInfo])
+
+    useEffect(() => {
+        setPagination(); 
+    }, [activePage])
+
+    useEffect(() => {
+        setPagesCount(userInfo.length/showingCount); 
+        setPagination(); 
+        setDotclass(Array(showingCount).fill("dot-div-hidden"))
+    }, [showingCount])
+
     const getDetails = async () => {
         try{
             const response = await axios.get('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
             setUserInfo(response.data); 
-            setDotclass(Array(response.data.length).fill("dot-div-hidden"))
-            // localStorage.setItem("data", response.data); 
-            storeDetails();
         }catch(err){
             alert(err); 
         }
@@ -81,6 +98,14 @@ const Users = () => {
         userInfo.forEach((value) => {
             localStorage.setItem(`user-${value.id}`, JSON.stringify(value)); 
         })
+    }
+
+    const setPagination =  () => {
+        setPagesCount(Math.ceil(userInfo.length/showingCount))
+        const basePage = activePage*showingCount; 
+        // // const currentInfos = userInfo.slice(basePage, basePage+showingCount); 
+        setCurrentInfos(userInfo.slice(basePage, basePage+showingCount)); 
+        // alert(basePage + ":::" + (basePage+showingCount))
     }
 
     const cardList = cards.map((card, index) => (
@@ -109,12 +134,9 @@ const Users = () => {
 
     const detailsClick = (id: string) => {
         navigate(`/userdetails/${id}`);
-        // const user = localStorage.getItem("user-1"); 
-        // const user = JSON.parse(localStorage.getItem(`user-${id}`) || '{}'); 
-        // alert(JSON.stringify(user))
     }
 
-    const userList = userInfo.map((user: UserObject, index: number) => (
+    const userList = currentInfos.map((user: UserObject, index: number) => (
         <div className='user-row-div' key={index}>
             <p className="org">{user.orgName}</p>
             <p className="username">{user.userName}</p>
@@ -144,6 +166,20 @@ const Users = () => {
             setShowFilter(true)
         }
     }
+
+    const pageChange = (value: { index: number; selected: number; 
+        nextSelectedPage: number; event: object; isPrevious: boolean;
+         isNext: boolean; isBreak: boolean; isActive: boolean; }) => {
+
+        setActivePage(value.nextSelectedPage)
+    }
+
+    const countChange = (value: React.ChangeEvent<HTMLSelectElement>) => {
+        setShowingCount(Number.parseInt(value.currentTarget.value)); 
+    }
+
+    const prevLabel = (<div className="chev-div"><img src={chevLeft} alt='chev left icon' /> </div>); 
+    const nextLabel = (<div className="chev-div"><img src={chevRight} alt='chev left icon' /> </div>)
 
     return (
         <div className="user-content">
@@ -212,25 +248,27 @@ const Users = () => {
             <div className="pagination-div">
                 <div className="showing-div">
                     <p>Showing</p>
-                    <select className="selectSet">
-                        <option value="100" selected>100</option>
+                    <select className="selectSet" value={showingCount} onChange={countChange}>
+                        <option value="100">100</option>
                         <option value="50">50</option>
                         <option value="25">25</option>
                         <option value="10">10</option>
                     </select>
-                    <p>Out of 100</p>
+                    <p>{`Out of ${userInfo.length}`}</p>
                 </div>
-
-                <div className="page-div">
-                    <div className="chev-div"><img src={chevLeft} alt='chev left icon' /> </div>
-                    <p className="active">1</p>
-                    <p>2</p>
-                    <p>3</p>
-                    <p>...</p>
-                    <p>15</p>
-                    <p>16</p>
-                    <div className="chev-div"><img src={chevRight} alt='chev left icon' /> </div>
-                </div>
+  
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel={nextLabel}
+                    onClick={pageChange}
+                    pageRangeDisplayed={3} 
+                    marginPagesDisplayed={2}
+                    pageCount={pagesCount} 
+                    previousLabel={prevLabel}
+                    activeClassName="active"
+                    containerClassName="page-div"
+                    initialPage={activePage}
+                />
 
                 <div className="mob-page-div">
                     <div className="chev-div"><img src={chevLeft} alt='chev left icon' /> </div>
