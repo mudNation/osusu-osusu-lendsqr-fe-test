@@ -17,23 +17,39 @@ import Select from 'react-select'
 import axios from "axios";
 import { UserObject } from "./models";
 import ReactPaginate from "react-paginate";
+import { valueContainerCSS } from "react-select/dist/declarations/src/components/containers";
+
+interface SelectObject{
+    value?: string,
+    label?: string
+}
 
 const Users = () => {
     const [showFilter, setShowFilter] = useState(false); 
     const [dotIndex, setDotIndex] = useState(-1); 
     const [userInfo, setUserInfo] = useState<UserObject[]>([]); 
+    const [allUserInfo, setAllUserInfo] = useState<UserObject[]>([]); 
     const [currentInfos, setCurrentInfos] = useState<UserObject[]>([]); 
     const navigate = useNavigate(); 
     const [dotClass, setDotclass] = useState<string[]>([]);
     const [showingCount, setShowingCount] = useState(10); 
     const [activePage, setActivePage] = useState(0); 
-    const [pagesCount, setPagesCount] = useState(0)
+    const [pagesCount, setPagesCount] = useState(0); 
+    const [orgSelect, setOrgSelect] = useState<SelectObject>({value: "", label: ""}); 
+    const [usernameValue, setUsernameValue] = useState(""); 
+    const [emailValue, setEmailValue] = useState(""); 
+    const [dateValue, setDateValue] = useState(""); 
+    const [phoneValue, setPhoneValue] = useState(""); 
+    const [statusSelect, setStatusSelect] = useState<SelectObject>({value: "", label: ""}); 
     // const [dotClass, setDotclass] = useState(Array(userInfo.length).fill("dot-div-hidden"));
 
     const orgOptions = [
-        { value: 'lendsqr', label: 'Lendsqr' },
-        { value: 'irorun', label: 'Irorun' },
+        { value: 'labore-dolor-et', label: 'Labore-dolor-et' },
+        { value: 'accusamus-minima-repudiandae', label: 'Accusamus-minima-repudiandae' },
     ]
+
+
+
 
     const statusOptions = [
         { value: 'active', label: 'Active' },
@@ -89,6 +105,7 @@ const Users = () => {
         try{
             const response = await axios.get('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
             setUserInfo(response.data); 
+            setAllUserInfo(response.data); 
         }catch(err){
             alert(err); 
         }
@@ -178,6 +195,29 @@ const Users = () => {
         setShowingCount(Number.parseInt(value.currentTarget.value)); 
     }
 
+    const clearFilterUsers = () => {
+        setUserInfo(allUserInfo); 
+
+        setEmailValue("")
+        setUsernameValue("")
+        setPhoneValue("")
+        setDateValue("")
+        setOrgSelect({value: "", label: ""})
+        setStatusSelect({value: "", label: ""})
+    }
+
+    const filterUsers = () => {
+        const temp = userInfo.filter((value) => {
+            return value.orgName.includes(orgSelect.value || "") && value.userName.includes(usernameValue) &&
+                value.email.includes(emailValue) && value.phoneNumber.includes(phoneValue) && 
+                value.createdAt.toString().split('T').includes(dateValue); 
+        })
+
+        alert(dateValue + ":::" + userInfo[0].createdAt.toString().split('T'))
+        
+        setUserInfo(temp);
+    }
+
     const prevLabel = (<div className="chev-div"><img src={chevLeft} alt='chev left icon' /> </div>); 
     const nextLabel = (<div className="chev-div"><img src={chevRight} alt='chev left icon' /> </div>)
 
@@ -206,41 +246,45 @@ const Users = () => {
                 <div className={showFilter ? "filter-div" : "filter-div-hidden"}>
                     <label>Organization</label>
                     <div className="select-div">
-                        <Select options={orgOptions} />
+                        <Select options={orgOptions} onChange={(e)=>{
+                            setOrgSelect({value: e?.value, label: e?.label})
+                        }} />
                     </div>
                     
                     <label>Username</label>
                     <div className="select-div">
-                        <input type="text" placeholder="User"></input>
+                        <input type="text" value={usernameValue} onChange={(e) => {setUsernameValue(e.target.value)}} placeholder="User"></input>
                         <div className="input-border"></div>
                     </div>
 
                     <label>Email</label>
                     <div className="select-div">
-                        <input type="text" placeholder="Email"></input>
+                        <input type="text" value={emailValue} onChange={(e) => {setEmailValue(e.target.value)}} placeholder="Email"></input>
                         <div className="input-border"></div>
                     </div>
 
                     <label>Date</label>
                     <div className="select-div">
-                        <input type="date" placeholder="Date"></input>
+                        <input type="date" value={dateValue} onChange={(e) => {setDateValue(e.target.value)}} placeholder="Date"></input>
                         <div className="input-border"></div>
                     </div>
 
                     <label>Phone Number</label>
                     <div className="select-div">
-                        <input type="text" placeholder="Phone Number"></input>
+                        <input type="text" value={phoneValue} onChange={(e) => {setPhoneValue(e.target.value)}} placeholder="Phone Number"></input>
                         <div className="input-border"></div>
                     </div>
 
                     <label>Status</label>
                     <div className="select-div">
-                        <Select options={statusOptions} />
+                        <Select options={statusOptions} onChange={(e)=>{
+                            setStatusSelect({value: e?.value, label: e?.label})
+                        }}  />
                     </div>
 
                     <div className="filter-button-div">
-                        <button>Reset</button>
-                        <button>Filter</button>
+                        <button onClick={clearFilterUsers}>Reset</button>
+                        <button onClick={filterUsers}>Filter</button>
                     </div>
                 </div>
             </div>
