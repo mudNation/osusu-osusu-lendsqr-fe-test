@@ -41,6 +41,12 @@ $border-radius-large: 8px;
     flex-direction: column;
 }
 
+.flex-center{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
 .flex-column-align-start{
     @extend .flex-column; 
     align-items: flex-start;
@@ -49,6 +55,17 @@ $border-radius-large: 8px;
 .flex-align-center{
     display: flex; 
     align-items: center;
+}
+
+.flex-justify-between-align-center{
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-justify-between{
+    display: flex; 
+    justify-content: space-between;
 }
 
 .primary-button{

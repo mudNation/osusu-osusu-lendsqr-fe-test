@@ -21,10 +21,9 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
 
 .card-holder-div{
+    @extend .flex-justify-between;
     width: 100%; 
     height: 160px; 
-    display: flex; 
-    justify-content: space-between;
 
     .card-div{
         @include set-shadow($shadow-1);
@@ -35,11 +34,9 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         position: relative;
 
         .card-icon-div{
+            @extend .flex-center; 
             width: 40px; 
             height: 40px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: relative;
 
             .card-icon-hover{
@@ -101,6 +98,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
     .filter-div{
         @include set-shadow($shadow-1);
+        @extend .flex-column;
         position: absolute;
         width: 270px; 
         height: 600px;
@@ -108,8 +106,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         top: 80px; 
         border-radius: $border-radius-small;
         padding: 30px 20px;
-        display: flex; 
-        flex-direction: column;
+        
         box-sizing: border-box;
         border: 1px solid rgba(84, 95, 125, 0.14);
         @include format-text(14px, 400, $secondary-color, normal);
@@ -171,15 +168,13 @@ $page-button-background: rgba(33, 63, 125, 0.1);
     }
 
     .user-row-div{
+        @extend .flex-align-center;
         width: 100%;
-        display: flex; 
-        align-items: center;
         position: relative;
 
         h3{
             @include format-text(12px, 700, $secondary-color, normal);
             display: flex; 
-            // align-items: flex-start;
             line-height: 12px;
             margin: 0px; 
             box-sizing: border-box;
@@ -229,21 +224,17 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         }
 
         .status{
+            @extend .flex-align-center;
             width: 140px;
             position: relative;
-            display: flex; 
-            align-items: center;
 
             img{
                 cursor: pointer;
             }
 
             .oval-div{
+                @extend .flex-center; 
                 height: 30px; 
-                
-                display: flex; 
-                justify-content: center;
-                align-items: center;
                 position: relative;
                 padding: 8px 16px; 
                 box-sizing: border-box;
@@ -314,8 +305,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
             p{
                 @include format-text(14px, 500, $text-color, normal);
-                display: flex;  
-                align-items: center; 
+                @extend .flex-align-center; 
                 width: 100%;
                 padding: 0px;
                 img{
@@ -336,8 +326,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
         .dot-div-shown{
             @extend .dot-div; 
-            display: flex; 
-            flex-direction: column;
+            @extend .flex-column; 
         }
 
         &:not(:first-child){
@@ -346,9 +335,8 @@ $page-button-background: rgba(33, 63, 125, 0.1);
             border-bottom: 1px solid #213F7D1A;
     
             .status{
+                @extend .flex-justify-between;
                 flex: 1; 
-                display: flex; 
-                justify-content: space-between;
             }
         }
     }
@@ -360,8 +348,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
     
     h3{
         @include format-text(16px, 700, $secondary-color, normal);
-        display: flex; 
-        align-items: center;
+        @extend .flex-align-center; 
         
         img{
             margin-left: 10px;
@@ -379,9 +366,8 @@ $page-button-background: rgba(33, 63, 125, 0.1);
     align-items: flex-start;
   
     .showing-div{
+        @extend .flex-align-center;
         height: 30px; 
-        display: flex; 
-        align-items: center;
 
         p{
             @include format-text(14px, 400, $secondary-color, normal);
@@ -401,9 +387,8 @@ $page-button-background: rgba(33, 63, 125, 0.1);
     }
 
     .page-div{
+        @extend .flex-align-center; 
         height: 30px; 
-        display: flex; 
-        align-self: center;
         margin: 0px;
         
 
@@ -422,20 +407,17 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         }
 
         .chev-div{
+            @extend .flex-center; 
             height: 24px; 
             width: 24px; 
-            display: flex; 
-            justify-content: center;
-            align-items: center;
+            
             background-color: $page-button-background;
         }
 
         p{
+            @extend .flex-center;
             @include format-text(16px, 400, $secondary-color, normal);
             margin: 0px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             opacity: 0.6;
             cursor: pointer;
         }

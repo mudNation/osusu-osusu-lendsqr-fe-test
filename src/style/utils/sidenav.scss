@@ -42,19 +42,18 @@ $left: 30px;
 }
 
 .menu-div-holder{
-    display: flex; 
-    flex-direction: column;
+    @extend .flex-column;
     border-bottom: 1px solid rgba(33, 63, 125, 0.1);
     padding-bottom: 50px;
     
 }
 
 .menu-div{
+    @extend .flex-column;
     // border: 1px solid black;
     margin-top: 41px; 
     margin-bottom: 0px; 
-    display: flex; 
-    flex-direction: column;
+    
     position: relative;
     
     // background: yellow;
@@ -65,8 +64,7 @@ $left: 30px;
     }
 
     div{
-        display: flex; 
-        align-items: center;
+        @extend .flex-align-center; 
         // padding-left: 30px;
         position: relative;
         height: 40px;
@@ -101,8 +99,7 @@ $left: 30px;
 .sign-out-p{
     @include format-text(16px, 400, $text-color, normal);
     @extend .clickable; 
-    display: flex; 
-    align-items: center;
+    @extend .flex-align-center;
     margin: 20px 0px 42px $left; 
     cursor: pointer;
     width: fit-content;
