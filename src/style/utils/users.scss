@@ -200,6 +200,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         display: none;
 
         img{
+            @extend .clickable; 
             cursor: pointer; 
         }
     }
@@ -220,6 +221,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
             word-wrap: break-word;
             
             img{
+                @extend .clickable; 
                 margin-left: 10px;
                 cursor: pointer; 
             }
@@ -330,6 +332,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         }
 
         .dot-icon{
+            @extend .clickable;
             cursor: pointer;
             position: absolute;
             right: 0px;
@@ -440,15 +443,19 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         align-self: center;
         margin: 0px;
         
-        // background-color: green;
 
         li{
             @include format-text(16px, 400, $secondary-color, normal);
+            @extend .clickable; 
             margin-right: 20px;
             opacity: 0.6;
             cursor: pointer;
             list-style-type: none;
             // background-color: blue;
+        }
+
+        li:last-child{
+            margin-right: 0px;
         }
 
         .chev-div{
@@ -521,6 +528,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
             .dot-icon{
                 position: absolute; 
                 right: 0px; 
+                
             }
 
             .dot-div{

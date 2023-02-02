@@ -94,3 +94,12 @@ $user-color-1: "#DF18FF";
         display: none;
     }
 }
+
+.clickable{
+    cursor: pointer; 
+    transition: 0.2s;
+}
+
+.clickable:hover{
+    opacity: 0.8; 
+}

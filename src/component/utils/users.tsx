@@ -162,7 +162,7 @@ const Users = () => {
             <p className="date">{user.createdAt.toString().split('T')[0]}</p>
             <div className="status">
                 <div className="oval-div">
-                    <p className='active-p'>{"active"}</p> <div className={`oval-div-hover active` }></div>
+                    <p className='active-p'>{"Active"}</p> <div className={`oval-div-hover active` }></div>
                 </div>
             </div>
 
@@ -213,9 +213,14 @@ const Users = () => {
 
     const filterUsers = () => {
         const temp = userInfo.filter((value) => {
-            return value.orgName.includes(orgSelect.value || "") && value.userName.includes(usernameValue) &&
-                value.email.includes(emailValue) && value.phoneNumber.includes(phoneValue) && 
-                value.createdAt.toString().split('T').includes(dateValue); 
+            let valid = value.orgName.includes(orgSelect.value || "") && value.userName.includes(usernameValue) &&
+            value.email.includes(emailValue) && value.phoneNumber.includes(phoneValue)
+
+            if(dateValue.length > 0){
+                valid = value.createdAt.toString().split('T').includes(dateValue)
+            }
+
+            return valid; 
         })
 
         alert(dateValue + ":::" + userInfo[0].createdAt.toString().split('T'))

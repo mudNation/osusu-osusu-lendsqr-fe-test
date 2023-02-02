@@ -33,6 +33,7 @@
     }
     
     .search-icon-div{
+        @extend .clickable; 
         background-color: $green-color;
         height: 40px; 
         width: 56px;
@@ -59,10 +60,15 @@
 
     .docs-p{
         @include format-text(16px, 400, $text-color, normal);
+        @extend .clickable; 
         width: fit-content;
         text-decoration: underline;
         font-family: 'Roboto', sans-serif;
         margin-right: 50px; 
+    }
+
+    .bell-icon{
+        @extend .clickable;
     }
     
     .profile{
@@ -72,9 +78,16 @@
     
     .name{
         @include format-text(16px, 600, $text-color, normal);
+        @extend .clickable;
         font-family: "Work Sans";
         margin-left: 10px; 
-        margin-right: 10px; 
+        display: flex; 
+        align-items: center;
+        height: 20px;
+
+        img{
+            margin-left: 10px;
+        }
     }
 
     .right-dropdown-div{

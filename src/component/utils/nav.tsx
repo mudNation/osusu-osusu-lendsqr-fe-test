@@ -39,8 +39,8 @@ const Nav = ({barsClick}:Props) => {
                 <p className="docs-p">Docs</p>
                 <img src={bell} alt="bell icon" className="bell-icon"/>
                 <img src={profile} alt="profile" className="profile" onClick={setDropClick}/>
-                <p className="name">Adedeji</p>
-                <img src={arrow} alt="arrow down icon" className="nav-right-down-icons" />
+                <p className="name">Adedeji <img src={arrow} alt="arrow down icon" className="nav-right-down-icons" /></p>
+                
 
                 <ul className={dropClass}>
                     <li>Adedeji</li>
