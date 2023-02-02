@@ -204,6 +204,12 @@
                 padding: 10px; 
                 text-align: center;
                 box-sizing: border-box;
+                transition: 0.2s;
+                cursor: pointer;
+
+                &:hover{
+                    opacity: 0.7; 
+                }
             }
         }
 

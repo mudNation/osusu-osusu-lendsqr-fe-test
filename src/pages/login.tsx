@@ -59,7 +59,7 @@ const Login = () => {
 
                         <button className='text-button' >FORGOT PASSWORD?</button>
 
-                        <input disabled={username.length < 3 && password.length<3} type='submit' value='LOG IN' className='login-button' onClick={loginClick}></input>
+                        <input disabled={username.length < 3 || password.length<3} type='submit' value='LOG IN' className='login-button' onClick={loginClick}></input>
                     </form>
                 </div>
             </div>
