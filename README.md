@@ -44,3 +44,30 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+
+
+###`About the project`
+The project structure consist of both the tsx files and the scss files
+The tsx has three pages, the Login page, Dashboard page and the userdetails page. Each can be found inside the pages folder in the src directory
+The pages listed above also make use of compenents which are stored in the components folder of the src directory
+The scss files also follow the same format, the scss files can be found in the styles folder in the src directory
+Each page has it own scss file and each component also has its own scss file which can be fould under the src/styles/utils folder
+The project also has a models.ts file which stores all reusable interfaces. 
+
+The first page shown is the login page. The login button is disabled by default and on becomes enabled when values have been entered for both the username and password
+
+The next page that shows up after clicking login is the dashboard page. This page has the top navigation and also the side navigation. 
+In this page the data is fetched from the mock api using axios, it is then displayed in a tabular form for desktops and breaks it down into a single form for smaller devices. 
+The dashboard also allows you to choose the number of users to display per page, letting you move through each page via the pagination at the bottom. 
+Futhermore this page also allows users filter the users by entering either their name, email, phone number and date created. the status is the only field not working in the filter as it was not provided from the database. 
+
+Upon clicking any three dot icon found at the far right of a user row in the dashboard page, a drop down is shown, when the view details is clicked, the userdetails page is opened. This page shows more information about the user such as their profile details, account balance, guarantor information and social handles. the back button takes you back to the dashboard
+
+The logout button found on the side nav, when clicked takes you back to the login page. 
+
+
+All pages are mobile responsive for different sizes of screens. 
+
