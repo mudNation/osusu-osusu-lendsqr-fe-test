@@ -43,21 +43,16 @@ $vertical-spacer: 24px;
 }
 
 .login-right-div{
+    @include set-shadow(0px 15px 90px rgba(0, 0, 0, 0.03));
     height: 100%; 
     width: 50%;
-    box-shadow: 0px 15px 90px rgba(0, 0, 0, 0.03);
-    // background: orange; 
 }
 
 .form-div{
+    @extend .flex-column-align-start; 
     flex: 1; 
-    // margin: 240px 0px 0px 0px; 
     margin-top: 245px;
     font: $font; 
-    display: flex; 
-    flex-direction: column;
-    // background-color: lightgreen;
-    align-items: flex-start;
     padding: 0px 0px 0px 100px; 
     box-sizing: border-box;
 }
@@ -73,10 +68,8 @@ $vertical-spacer: 24px;
 }
 
 .form-form{
+    @extend .flex-column-align-start; 
     margin-top: $mid-spacer; 
-    display: flex; 
-    flex-direction: column;
-    align-items: flex-start;
     width: 447px; 
     // border: 5px solid red; 
 }
@@ -96,10 +89,9 @@ $vertical-spacer: 24px;
 
 .password-div{
     // border: 1px solid red; 
+    @extend .flex-align-center; 
     width: 100%;
     position: relative;
-    display: flex; 
-    align-items: center;
     margin-bottom: $vertical-spacer;
 }
 

@@ -60,20 +60,20 @@
     }
 
     .user-logo-div{
+        @include set-shadow($shadow-1);
         width: 100%; 
-        box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
         margin-top: 40px; 
         padding: 30px 30px 0px 30px;
         box-sizing: border-box;
         position: relative;
         position: flex;
+        
 
         .user-logo-first{
             display: flex; 
             margin-bottom: 51px;
             .name-logo{
-                display: flex; 
-                align-items: center;
+                @extend .flex-align-center;
                 position: relative;
                 width: 300px;
                 padding-right: 30px;
@@ -161,15 +161,12 @@
 
 
     .user-information-div{
+        @include set-shadow($shadow-1);
+        @extend .flex-column; 
         width: 100%; 
-        // height: 500px; 
-        background-color: white; 
-        box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
         margin-top: 30px;
         padding: 0px 30px; 
         box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
 
         h3{
             @include format-text(16px, 600, $text-color, normal);
@@ -249,9 +246,9 @@
         }
 
         .user-logo-div{
-            height: fit-content; 
-            display: flex; 
+            display: flex;
             flex-direction: column;
+            height: fit-content; 
 
             .user-logo-first{
                 flex-direction: column;
@@ -334,7 +331,6 @@
 
         .user-logo-div{
             width: 100%; 
-            box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
             margin-top: 40px; 
             padding: 30px 30px 0px 30px;
             box-sizing: border-box;

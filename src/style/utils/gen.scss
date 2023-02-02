@@ -5,8 +5,10 @@ $secondary-color: #545F7D;
 $green-color: #39CDCC;
 $mid-spacer: 60px;
 $work: "Work Sans";
-
 $user-color-1: "#DF18FF"; 
+$shadow-1: 3px 0px 20px 0px #0000000A;
+$border-radius-small: 4px; 
+$border-radius-large: 8px; 
 
 
 @mixin format-text($size, $weight, $color, $spacing){
@@ -19,21 +21,41 @@ $user-color-1: "#DF18FF";
     letter-spacing: $spacing;
 }
 
+@mixin set-shadow($shadow){
+    box-shadow: $shadow;
+    background-color: white;
+}
+
 @mixin button($border, $background, $color, $width, $spacing: normal){
     border: $border; 
     background-color: $background; 
     color: $color;
     width: $width; 
     height: 40px; 
-    border-radius: 8px;
+    border-radius: $border-radius-large;
     @include format-text(14px, 600, $color, $spacing);
+}
+
+.flex-column{
+    display: flex; 
+    flex-direction: column;
+}
+
+.flex-column-align-start{
+    @extend .flex-column; 
+    align-items: flex-start;
+}
+
+.flex-align-center{
+    display: flex; 
+    align-items: center;
 }
 
 .primary-button{
     background-color: #39CDCC;
     color: white; 
     padding: 13px; 
-    border-radius: 8px; 
+    border-radius: $border-radius-large; 
     border: none; 
     cursor: pointer; 
 }
@@ -41,10 +63,10 @@ $user-color-1: "#DF18FF";
 .hide-scroll{
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-}
 
-.hide-scroll::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .hover{
@@ -56,7 +78,7 @@ $user-color-1: "#DF18FF";
 
 .filter-input{
     padding: 12px 20px;
-    border-radius: 4px;
+    border-radius: $border-radius-small;
     opacity: 0.7;
     border: none;
     box-sizing: border-box;
@@ -81,7 +103,7 @@ $user-color-1: "#DF18FF";
         height: 100%; 
         border: 1px solid $text-color; 
         opacity: 0.2; 
-        border-radius: 8px; 
+        border-radius: $border-radius-large; 
         z-index: -1;
     }
 
@@ -98,8 +120,8 @@ $user-color-1: "#DF18FF";
 .clickable{
     cursor: pointer; 
     transition: 0.2s;
-}
 
-.clickable:hover{
-    opacity: 0.8; 
+    &:hover{
+        opacity: 0.8;
+    }
 }

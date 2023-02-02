@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../../style/utils/users.scss";
-import "../../style/utils/pagination.scss";
 import group from "../../assets/vectors/Group.png";
 import userIcon from "../../assets/vectors/np_users_1.png";
 import loan from "../../assets/vectors/np_loan_1.png";
@@ -17,7 +16,6 @@ import Select from 'react-select'
 import axios from "axios";
 import { UserObject } from "./models";
 import ReactPaginate from "react-paginate";
-import { valueContainerCSS } from "react-select/dist/declarations/src/components/containers";
 
 interface SelectObject{
     value?: string,
@@ -154,7 +152,7 @@ const Users = () => {
     }
 
     const userList = currentInfos.map((user: UserObject, index: number) => (
-        <div className='user-row-div' key={index}>
+        <div className={`user-row-div ${index === currentInfos.length-1 && "last-row-div"}`} key={index}>
             <p className="org">{user.orgName}</p>
             <p className="username">{user.userName}</p>
             <p className="email">{user.email}</p>

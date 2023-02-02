@@ -1,21 +1,15 @@
 @import "gen";
 $left: 30px; 
 
-.mob-side-nav{
-    // @extend .side-nav;
-    // display: none;
-}
-
 .side-nav{
+    @include set-shadow(0px 5px 20px rgba(0, 0, 0, 0.04));
     @extend .hide-scroll; 
     width: 283px;  
     height: 100%;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.04);
     padding: 40px 0px 20px 0px;
     box-sizing: border-box;
     overflow-y: scroll;
     position: relative;  
-    background-color: white;
     z-index: 5;
 }
 
@@ -26,8 +20,7 @@ $left: 30px;
 }
 
 .brief-case-div{
-    display: flex; 
-    align-items: center;
+    @extend .flex-align-center; 
     padding-left: $left; 
 
     p{
