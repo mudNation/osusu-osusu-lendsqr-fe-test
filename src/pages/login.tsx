@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../component/logo';
 import "../style/login.scss";
@@ -26,6 +26,12 @@ const Login = () => {
     const loginClick = () => {
         navigate('/dashboard')
     }
+
+    useEffect(() => {
+        document.title = 'Login';
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
 
     return(
         <div className='content'>

@@ -17,6 +17,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+        document.title = 'Dashboard';
         function handleResize() {
             if(window.innerWidth >= 850){
                 setSideClass(sideClass.replace(" mob-side-nav", "")); 

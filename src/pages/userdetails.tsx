@@ -26,6 +26,10 @@ const UserDetails = () => {
     }
 
     useEffect(() => {
+        document.title = `${info?.profile.firstName} ${info?.profile.lastName}` || "User Details";
+    }, [info])
+
+    useEffect(() => {
         getLocal(); 
 
         function handleResize() {
