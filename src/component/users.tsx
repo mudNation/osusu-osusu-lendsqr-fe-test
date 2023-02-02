@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "../../style/utils/users.scss";
-import group from "../../assets/vectors/Group.png";
-import userIcon from "../../assets/vectors/np_users_1.png";
-import loan from "../../assets/vectors/np_loan_1.png";
-import money from "../../assets/vectors/np_money_1.png";
-import tableMenu from "../../assets/vectors/table-menu.png";
-import dot from "../../assets/vectors/dot.png";
-import chevLeft from "../../assets/vectors/chev-left.png";
-import chevRight from "../../assets/vectors/chev-right.png";
-import view from "../../assets/vectors/np_view.png";
-import dotUser from "../../assets/vectors/np_user.png";
-import deleteFriend from "../../assets/vectors/np_delete-friend.png";
+import "../style/utils/users.scss";
+import group from "../assets/vectors/Group.png";
+import userIcon from "../assets/vectors/np_users_1.png";
+import loan from "../assets/vectors/np_loan_1.png";
+import money from "../assets/vectors/np_money_1.png";
+import tableMenu from "../assets/vectors/table-menu.png";
+import dot from "../assets/vectors/dot.png";
+import chevLeft from "../assets/vectors/chev-left.png";
+import chevRight from "../assets/vectors/chev-right.png";
+import view from "../assets/vectors/np_view.png";
+import dotUser from "../assets/vectors/np_user.png";
+import deleteFriend from "../assets/vectors/np_delete-friend.png";
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select'
 import axios from "axios";
@@ -38,7 +38,7 @@ const Users = () => {
     const [emailValue, setEmailValue] = useState(""); 
     const [dateValue, setDateValue] = useState(""); 
     const [phoneValue, setPhoneValue] = useState(""); 
-    const [statusSelect, setStatusSelect] = useState<SelectObject>({value: "", label: ""}); 
+    const [statusSelect, setStatusSelect] = useState<SelectObject>({value: "Select", label: "Select"}); 
     // const [dotClass, setDotclass] = useState(Array(userInfo.length).fill("dot-div-hidden"));
 
     const orgOptions = [
@@ -87,16 +87,19 @@ const Users = () => {
         storeDetails();
         setPagination(); 
         setDotclass(Array(showingCount).fill("dot-div-hidden"))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userInfo])
 
     useEffect(() => {
         setPagination(); 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activePage])
 
     useEffect(() => {
         setPagesCount(userInfo.length/showingCount); 
         setPagination(); 
         setDotclass(Array(showingCount).fill("dot-div-hidden"))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showingCount])
 
     const getDetails = async () => {
@@ -217,8 +220,8 @@ const Users = () => {
         setUsernameValue("")
         setPhoneValue("")
         setDateValue("")
-        setOrgSelect({value: "", label: ""})
-        setStatusSelect({value: "", label: ""})
+        setOrgSelect({value: "Select", label: "Select"})
+        setStatusSelect({value: "Select", label: "Select"})
     }
 
     const filterUsers = () => {
@@ -266,7 +269,7 @@ const Users = () => {
                 <div className={showFilter ? "filter-div" : "filter-div-hidden"}>
                     <label>Organization</label>
                     <div className="select-div">
-                        <Select options={orgOptions} onChange={(e)=>{
+                        <Select value={orgSelect} options={orgOptions} onChange={(e)=>{
                             setOrgSelect({value: e?.value, label: e?.label})
                         }} />
                     </div>
@@ -297,7 +300,7 @@ const Users = () => {
 
                     <label>Status</label>
                     <div className="select-div">
-                        <Select options={statusOptions} onChange={(e)=>{
+                        <Select value={statusSelect} options={statusOptions} onChange={(e)=>{
                             setStatusSelect({value: e?.value, label: e?.label})
                         }}  />
                     </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import "../../style/utils/user-info-table.scss";
-import { UserObject } from "../utils/models";
+import "../style/utils/user-info-table.scss";
+import { UserObject } from "./models";
 
 interface Props{
     info?: UserObject,

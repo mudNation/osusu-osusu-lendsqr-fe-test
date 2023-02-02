@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../component/utils/logo';
+import Logo from '../component/logo';
 import "../style/login.scss";
 import pablo from "../assets/pablo-sign-in 1.png";
 
@@ -45,10 +45,12 @@ const Login = () => {
                     <p className='details-text'>Enter details to login.</p>
 
                     <form className='form-form' onSubmit={(e) => handleSubmit(e)}>
-                        <input className="input-field text-field" type='text' placeholder='Email'/>
+                        <input className="input-field text-field" 
+                            value={username} onChange={(e) => setUsername(e.target.value)} type='text' placeholder='Email'/>
 
                         <div className='password-div'>
-                            <input className="input-field" type={isVisible ? 'text' : 'password'} placeholder='Password'/>
+                            <input className="input-field" 
+                                value={password} onChange={(e) => setPassword(e.target.value)} type={isVisible ? 'text' : 'password'} placeholder='Password'/>
                             <button className='text-input-button' onClick={showPassword}>SHOW</button>
                         </div>
 

@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../component/utils/nav";
-import SideNav from "../component/utils/sidenav";
+import Nav from "../component/nav";
+import SideNav from "../component/sidenav";
 import "../style/dashboard.scss";
 import "../style/userdetails.scss";
 import back from "../assets/vectors/back-icon.png";
-import avatar from "../assets/avatar.png";
 import fullStar from "../assets/vectors/np_star_full.png";
 import emptyStar from "../assets/vectors/np_star_empty.png";
-import chevDown from "../assets/vectors/chevdown.png";
-import UserInfoTable from "../component/userdetails/user-info-table";
+import UserInfoTable from "../component/user-info-table";
 import Select from 'react-select'
-import axios from "axios";
 import { useParams } from "react-router-dom";
-import { UserObject } from "../component/utils/models";
+import { UserObject } from "../component/models";
 import { useNavigate } from "react-router-dom";
 
 const UserDetails = () => {
@@ -40,6 +37,7 @@ const UserDetails = () => {
 
         
         window.addEventListener('resize', handleResize)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getLocal = () => {

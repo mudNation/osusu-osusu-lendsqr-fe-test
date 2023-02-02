@@ -1,14 +1,12 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import Nav from '../component/utils/nav';
-import SideNav from '../component/utils/sidenav';
-import Users from '../component/utils/users';
+import { useEffect, useState } from 'react';
+import Nav from '../component/nav';
+import SideNav from '../component/sidenav';
+import Users from '../component/users';
 import "../style/dashboard.scss";
 
 
 const Dashboard = () => {
     const [sideClass, setSideClass] = useState("side-nav")
-    const [userInfo, setUserInfo] = useState([]); 
     
     const barsClick = () => {
         if(sideClass.includes("mob-side-nav")){
@@ -26,6 +24,7 @@ const Dashboard = () => {
         }
     
         window.addEventListener('resize', handleResize)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

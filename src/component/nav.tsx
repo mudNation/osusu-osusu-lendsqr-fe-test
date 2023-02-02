@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "../../style/utils/nav.scss";
+import "../style/utils/nav.scss";
 import Logo from "./logo";
-import search from "../../assets/vectors/search.png";
-import bell from "../../assets/vectors/bell.png";
-import profile from "../../assets/profile.png";
-import arrow from "../../assets/vectors/arrow-down.png";
+import search from "../assets/vectors/search.png";
+import bell from "../assets/vectors/bell.png";
+import profile from "../assets/profile.png";
+import arrow from "../assets/vectors/arrow-down.png";
 
 interface Props{
     barsClick: ()=>void,
