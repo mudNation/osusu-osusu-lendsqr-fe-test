@@ -95,7 +95,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
     width: 100%;
     margin-top: 40px;
     text-align: left;
-    padding: 30px 40px 30px 30px; 
+    padding: 30px 3% 30px 3%; 
     box-sizing: border-box;
     background-color: white;
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
@@ -213,44 +213,50 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         h3{
             @include format-text(12px, 700, $secondary-color, normal);
             display: flex; 
-            align-items: flex-start;
+            // align-items: flex-start;
             line-height: 12px;
             margin: 0px; 
+            box-sizing: border-box;
+            word-wrap: break-word;
             
             img{
                 margin-left: 10px;
                 cursor: pointer; 
             }
 
-            margin-right: 35px;
+            padding-right: 35px;
             margin-bottom: 16px;
             // background: green;
         }
 
         p{
             @include format-text(14px, 400, $secondary-color, normal);
-            margin: 0px 35px 0px 0px;
+            // margin: 0px 35px 0px 0px;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            padding-right: 35px;
             overflow-wrap: break-word;;
         }
 
         p:last-child{
             margin: 0px;
+            padding: 0px;
         }
 
         .org{
-            width: 116px;
+            width: 20%;
         }
 
         .username{
-            width: 106px;
+            width: 15%;
         }
 
         .email{
-            width: 147px;
+            width: 21%;
         }
 
         .phone{
-            width: 124px; 
+            width: 15%; 
         }
 
         .date{
@@ -287,6 +293,7 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
             p{
                 margin: 0px;
+                padding: 0px; 
             }
 
             .inative-p{
@@ -324,6 +331,8 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
         .dot-icon{
             cursor: pointer;
+            position: absolute;
+            right: 0px;
         }
 
         .dot-div{
