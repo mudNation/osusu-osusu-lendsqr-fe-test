@@ -96,6 +96,11 @@ $page-button-background: rgba(33, 63, 125, 0.1);
     box-sizing: border-box;
     position: relative; 
 
+    .loading-p{
+        text-align: center;
+        margin: 50px;
+    }
+
     .filter-div{
         @include set-shadow($shadow-1);
         @extend .flex-column;
@@ -140,11 +145,19 @@ $page-button-background: rgba(33, 63, 125, 0.1);
             button:first-child{
                 @include button(1px solid $text-color, white, $text-color, 98px); 
                 margin-right: 14px; 
+                
+
+                &:hover{
+                    @include button(none, $text-color, white, 98px); 
+                }
             }
 
             button:nth-child(2){
                 @include button(none, $green-color, white, 98px); 
                 margin-right: 14px; 
+                &:hover{
+                    @include button(1px solid $green-color, white, $green-color, 98px); 
+                }
             }
 
             button{
@@ -437,6 +450,8 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         display: none; 
     }
 }
+
+
 
 
 @media only screen and (max-width: 1300px) {

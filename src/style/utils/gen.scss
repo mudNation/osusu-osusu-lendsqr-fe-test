@@ -33,6 +33,8 @@ $border-radius-large: 8px;
     width: $width; 
     height: 40px; 
     border-radius: $border-radius-large;
+    transition: 0.2s;
+    cursor: pointer;
     @include format-text(14px, 600, $color, $spacing);
 }
 

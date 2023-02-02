@@ -16,6 +16,7 @@ import Select from 'react-select'
 import axios from "axios";
 import { UserObject } from "./models";
 import ReactPaginate from "react-paginate";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 interface SelectObject{
     value?: string,
@@ -39,14 +40,13 @@ const Users = () => {
     const [dateValue, setDateValue] = useState(""); 
     const [phoneValue, setPhoneValue] = useState(""); 
     const [statusSelect, setStatusSelect] = useState<SelectObject>({value: "Select", label: "Select"}); 
-    // const [dotClass, setDotclass] = useState(Array(userInfo.length).fill("dot-div-hidden"));
+    const [isLoading, setIsLoading] = useState(true); 
+    const [isEmpty, setIsEmpty] = useState(false);
 
     const orgOptions = [
         { value: 'labore-dolor-et', label: 'Labore-dolor-et' },
         { value: 'accusamus-minima-repudiandae', label: 'Accusamus-minima-repudiandae' },
     ]
-
-
 
 
     const statusOptions = [
@@ -84,6 +84,7 @@ const Users = () => {
     }, [])
 
     useEffect(() => {
+        
         storeDetails();
         setPagination(); 
         setDotclass(Array(showingCount).fill("dot-div-hidden"))
@@ -107,6 +108,7 @@ const Users = () => {
             const response = await axios.get('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
             setUserInfo(response.data); 
             setAllUserInfo(response.data); 
+            setIsLoading(false);
         }catch(err){
             alert(err); 
         }
@@ -222,6 +224,7 @@ const Users = () => {
         setDateValue("")
         setOrgSelect({value: "Select", label: "Select"})
         setStatusSelect({value: "Select", label: "Select"})
+        setIsEmpty(false);
     }
 
     const filterUsers = () => {
@@ -236,13 +239,17 @@ const Users = () => {
             return valid; 
         })
 
-        alert(dateValue + ":::" + userInfo[0].createdAt.toString().split('T'))
+        if(temp.length === 0){
+            setIsEmpty(true)
+        }
         
         setUserInfo(temp);
     }
 
     const prevLabel = (<div className="chev-div"><img src={chevLeft} alt='chev left icon' /> </div>); 
     const nextLabel = (<div className="chev-div"><img src={chevRight} alt='chev left icon' /> </div>)
+
+    const tableContent = isLoading ? <p className="loading-p">Loading...</p> : userList;
 
     return (
         <div className="user-content">
@@ -264,7 +271,10 @@ const Users = () => {
 
                 <h3 className="filter-p">Filter <img src={tableMenu} alt="table menu icon" onClick={filterClick}/></h3>
 
-                {userList}
+                
+                {isEmpty && <p className="loading-p">0 results found from search</p>}
+                {tableContent}
+                
 
                 <div className={showFilter ? "filter-div" : "filter-div-hidden"}>
                     <label>Organization</label>
