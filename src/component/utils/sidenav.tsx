@@ -21,12 +21,15 @@ import chartBar from "../../assets/vectors/chart-bar.png";
 import badgePercent from "../../assets/vectors/badge-percent.png";
 import clipBoardList from "../../assets/vectors/clipboard-list.png";
 import signout from "../../assets/vectors/sign-out.png";
+import { useNavigate } from "react-router-dom";
 
 interface Props{
     sideClass: string,
 }
 
 const SideNav = ({sideClass}:Props) => {
+    const navigate = useNavigate(); 
+    
     const menu = [
         {
             title: "CUSTOMERS", 
@@ -79,6 +82,10 @@ const SideNav = ({sideClass}:Props) => {
         </div>
     )); 
 
+    const logoutClick = () => {
+        navigate("/");
+    }
+
     return (
         <div className={sideClass}>
             <div className="brief-case-div">
@@ -96,7 +103,7 @@ const SideNav = ({sideClass}:Props) => {
                 {menuList}
             </div>
             
-            <p className="sign-out-p">
+            <p className="sign-out-p" onClick={logoutClick}>
                 <img src={signout} alt='logout icon'/>
                 Logout
             </p>

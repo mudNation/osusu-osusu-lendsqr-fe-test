@@ -469,7 +469,10 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
         p{
             @include format-text(16px, 400, $secondary-color, normal);
-            margin-right: 20px;
+            margin: 0px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             opacity: 0.6;
             cursor: pointer;
         }
@@ -481,6 +484,11 @@ $page-button-background: rgba(33, 63, 125, 0.1);
 
     .mob-page-div{
         @extend .page-div; 
+
+        div{
+            @extend .clickable; 
+        }
+        
         display: none; 
     }
 }
@@ -659,7 +667,10 @@ $page-button-background: rgba(33, 63, 125, 0.1);
         }
 
         .pagination-div{
+            // display: flex; 
             justify-content: center;
+            // align-items: center;
+            // background-color: yellow;
 
             .showing-div{
                 display: none; 
@@ -670,7 +681,15 @@ $page-button-background: rgba(33, 63, 125, 0.1);
             }
     
             .mob-page-div{
-                display: flex; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p{
+                    height: fit-content;
+                    padding: 0px;
+                    // background: blue; 
+                }
             }
         }
 

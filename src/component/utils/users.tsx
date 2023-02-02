@@ -192,8 +192,20 @@ const Users = () => {
             return; 
         }
 
-        alert(value.nextSelectedPage); 
+        // alert(value.nextSelectedPage); 
         setActivePage(value.nextSelectedPage)
+    }
+
+    const nextPageMobClick = (value: number) => {
+        if((value + 1) <= pagesCount){
+            setActivePage(value+1)
+        }
+    }
+
+    const prevPageMobClick = (value: number) => {
+        if((value - 1) >= 0){
+            setActivePage(value-1)
+        }
     }
 
     const countChange = (value: React.ChangeEvent<HTMLSelectElement>) => {
@@ -325,9 +337,9 @@ const Users = () => {
                 />
 
                 <div className="mob-page-div">
-                    <div className="chev-div"><img src={chevLeft} alt='chev left icon' /> </div>
-                    <p>1 of 16</p>
-                    <div className="chev-div"><img src={chevRight} alt='chev left icon' /> </div>
+                    <div className="chev-div" onClick={() => {prevPageMobClick(activePage)}}><img src={chevLeft} alt='chev left icon' /> </div>
+                    <p>{activePage+1} of {pagesCount}</p>
+                    <div className="chev-div" onClick={() => {nextPageMobClick(activePage)}}><img src={chevRight} alt='chev left icon' /> </div>
                 </div>
             </div>
         </div>

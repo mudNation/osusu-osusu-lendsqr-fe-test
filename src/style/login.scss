@@ -118,6 +118,7 @@ $vertical-spacer: 24px;
 
 .login-button{
     @extend .primary-button; 
+    @extend .clickable;
     margin-top: 30px;
     width: 100%; 
 }
