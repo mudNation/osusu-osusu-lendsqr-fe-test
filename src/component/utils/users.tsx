@@ -62,12 +62,12 @@ const Users = () => {
         {
             icon: group,
             title: "USERS",
-            figure: "2,453"
+            figure: userInfo.length
         },
         {
             icon: userIcon,
             title: "ACTIVE USERS",
-            figure: "2,453"
+            figure: userInfo.length
         },
         {
             icon: loan,
@@ -187,7 +187,12 @@ const Users = () => {
     const pageChange = (value: { index: number; selected: number; 
         nextSelectedPage: number; event: object; isPrevious: boolean;
          isNext: boolean; isBreak: boolean; isActive: boolean; }) => {
+        
+        if(value.nextSelectedPage === undefined || value.nextSelectedPage > pagesCount){
+            return; 
+        }
 
+        alert(value.nextSelectedPage); 
         setActivePage(value.nextSelectedPage)
     }
 
