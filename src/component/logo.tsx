@@ -1,4 +1,3 @@
-import React from "react";
 import "../style/utils/logo.scss";
 import union from "../assets/Union.png"; 
 import lendsqr from "../assets/lendsqr.png"; 

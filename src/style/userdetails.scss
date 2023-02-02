@@ -78,7 +78,6 @@
                 padding-right: 30px;
                 margin-right: 30px; 
                 box-sizing: border-box;
-                // background: pink;
                 img{
                     width: 100px;
                     margin-right: 20px; 
@@ -95,7 +94,6 @@
                 h2{
                     @include format-text(22px, 600, $secondary-color, normal);
                     margin:0px 0px 8px 0px; 
-                    // background: blue; 
                 }
 
                 .star-div{
@@ -136,7 +134,6 @@
                 @include format-text(16px, 400, rgba(0, 0, 0, 0.8), normal);
                 padding-bottom: 10px;
                 box-sizing: border-box;
-                // background: blue;
 
                 &:first-child{
                     padding: 0px 25px 10px 25px;
@@ -177,7 +174,6 @@
 
 @media only screen and (max-width: 1200px) {
     .user-content{
-        // background-color: green; 
         .user-logo-div{
             .user-logo-first{
                 .name-logo{

@@ -12,8 +12,6 @@ const Login = () => {
     const [isVisible, setIsvisible] = useState(false); 
 
     const showPassword = () => {
-        // alert("abc")
-        // e.preventDefault();
         if(isVisible){
             setIsvisible(false)
         }else{
@@ -29,7 +27,6 @@ const Login = () => {
         navigate('/dashboard')
     }
 
-    // <button onClick = {() => navigate('/user/44')}>Login in bitch</button>
     return(
         <div className='content'>
             <div className='login-left-div'>
@@ -56,7 +53,7 @@ const Login = () => {
 
                         <button className='text-button' >FORGOT PASSWORD?</button>
 
-                        <input type='submit' value='LOG IN' className='login-button' onClick={loginClick}></input>
+                        <input disabled={username.length < 3 && password.length<3} type='submit' value='LOG IN' className='login-button' onClick={loginClick}></input>
                     </form>
                 </div>
             </div>

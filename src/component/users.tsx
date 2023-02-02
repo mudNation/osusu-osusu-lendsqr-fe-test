@@ -16,7 +16,6 @@ import Select from 'react-select'
 import axios from "axios";
 import { UserObject } from "./models";
 import ReactPaginate from "react-paginate";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 interface SelectObject{
     value?: string,
@@ -42,12 +41,7 @@ const Users = () => {
     const [statusSelect, setStatusSelect] = useState<SelectObject>({value: "Select", label: "Select"}); 
     const [isLoading, setIsLoading] = useState(true); 
     const [isEmpty, setIsEmpty] = useState(false);
-
-    const orgOptions = [
-        { value: 'labore-dolor-et', label: 'Labore-dolor-et' },
-        { value: 'accusamus-minima-repudiandae', label: 'Accusamus-minima-repudiandae' },
-    ]
-
+    const [orgOptions, setOrgOptions] = useState<SelectObject[]>([])
 
     const statusOptions = [
         { value: 'active', label: 'Active' },
@@ -115,17 +109,22 @@ const Users = () => {
     }
 
     const storeDetails = async () => {
+        let tempOptions = [...orgOptions]; 
         userInfo.forEach((value) => {
+            if(!tempOptions.includes({value: value.orgName, label: value.orgName})){
+                tempOptions.push({value: value.orgName, label: value.orgName}); 
+            }
+            
             localStorage.setItem(`user-${value.id}`, JSON.stringify(value)); 
         })
+
+        setOrgOptions(tempOptions)
     }
 
     const setPagination =  () => {
         setPagesCount(Math.ceil(userInfo.length/showingCount))
         const basePage = activePage*showingCount; 
-        // // const currentInfos = userInfo.slice(basePage, basePage+showingCount); 
         setCurrentInfos(userInfo.slice(basePage, basePage+showingCount)); 
-        // alert(basePage + ":::" + (basePage+showingCount))
     }
 
     const cardList = cards.map((card, index) => (
@@ -194,8 +193,7 @@ const Users = () => {
         if(value.nextSelectedPage === undefined || value.nextSelectedPage > pagesCount){
             return; 
         }
-
-        // alert(value.nextSelectedPage); 
+ 
         setActivePage(value.nextSelectedPage)
     }
 
@@ -217,7 +215,6 @@ const Users = () => {
 
     const clearFilterUsers = () => {
         setUserInfo(allUserInfo); 
-
         setEmailValue("")
         setUsernameValue("")
         setPhoneValue("")
@@ -228,7 +225,7 @@ const Users = () => {
     }
 
     const filterUsers = () => {
-        const temp = userInfo.filter((value) => {
+        const temp = allUserInfo.filter((value) => {
             let valid = value.orgName.includes(orgSelect.value || "") && value.userName.includes(usernameValue) &&
             value.email.includes(emailValue) && value.phoneNumber.includes(phoneValue)
 

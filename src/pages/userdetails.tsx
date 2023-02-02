@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../component/nav";
 import SideNav from "../component/sidenav";
 import "../style/dashboard.scss";
@@ -17,7 +17,6 @@ const UserDetails = () => {
     const { id } = useParams(); 
     const [info, setInfo] = useState<UserObject>(); 
     const navigate = useNavigate(); 
-    // const [info, setInfo] = 
     const barsClick = () => {
         if(sideClass.includes("mob-side-nav")){
             setSideClass(sideClass.replace(" mob-side-nav", "")); 
@@ -118,8 +117,6 @@ const UserDetails = () => {
                         <div className="selectSet">
                             <Select options={options} />
                         </div>
-                        {/* <div className="input-border"></div>
-                        <img className="chev-down-icon" src={chevDown} alt="select down icon"/> */}
                     </div>
                     </div>
 

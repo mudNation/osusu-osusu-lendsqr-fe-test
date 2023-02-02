@@ -75,7 +75,6 @@ const SideNav = ({sideClass}:Props) => {
                 <div key={i} className={list.text === 'Users' ? "active-side-nav" : ""}>
                     <img src={list.icon} alt= {`${list.text} icon`}/>
                     <p>{list.text}</p>
-                    {/* <div className="side-hover"></div> */}
                 </div>
             ))}
         </div>

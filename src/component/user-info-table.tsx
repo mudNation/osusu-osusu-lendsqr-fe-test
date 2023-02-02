@@ -1,4 +1,3 @@
-import React from "react";
 import "../style/utils/user-info-table.scss";
 import { UserObject } from "./models";
 

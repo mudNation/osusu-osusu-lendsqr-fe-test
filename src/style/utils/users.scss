@@ -10,7 +10,6 @@ $page-button-background: rgba(33, 63, 125, 0.1);
     font-family: $work;
     box-sizing: border-box;
     position: relative;
-    // display: none; 
 
     h1{
         @include format-text(24px, 600, $text-color, normal);

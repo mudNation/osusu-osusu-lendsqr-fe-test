@@ -50,13 +50,9 @@ $left: 30px;
 
 .menu-div{
     @extend .flex-column;
-    // border: 1px solid black;
     margin-top: 41px; 
     margin-bottom: 0px; 
-    
     position: relative;
-    
-    // background: yellow;
 
     h3{
         @include format-text(12px, 500, $secondary-color, normal);
@@ -65,14 +61,12 @@ $left: 30px;
 
     div{
         @extend .flex-align-center; 
-        // padding-left: 30px;
         position: relative;
         height: 40px;
         margin-bottom: 10px;
         box-sizing: border-box;
         transition: 0.2s;
         cursor: pointer;
-        // background-color: yellow;
 
         &:not(.active-side-nav):hover{
             background-color: rgba(57, 205, 204, 0.1);
@@ -152,7 +146,6 @@ $left: 30px;
         .sign-out-p{
             font-size: 13px; 
             margin: 20px 0px 42px $left; 
-            // background-color: blue
             display: flex; 
             align-items: center;
             img{
